@@ -6,6 +6,10 @@ import '../../comp/constants.dart';
 import '../../comp/round_btn.dart';
 import 'package:zinggo_social/authentication/bloc/auth_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+
+final _firestore = FirebaseFirestore.instance;
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({Key? key}) : super(key: key);
@@ -16,14 +20,21 @@ class SignUpPage extends StatefulWidget {
 }
 
 class _SignUpPage extends State<SignUpPage> {
+  final _auth = FirebaseAuth.instance;
   final _formKey = GlobalKey<FormState>();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
+  final _usernameController = TextEditingController();
+  final _phoneController = TextEditingController();
+  final _dateofbirthController = TextEditingController();
 
   @override
   void dispose() {
     _emailController.dispose();
     _passwordController.dispose();
+    _usernameController.dispose();
+    _dateofbirthController.dispose();
+    _phoneController.dispose();
     super.dispose();
   }
 
@@ -68,6 +79,7 @@ class _SignUpPage extends State<SignUpPage> {
                             alignment: Alignment.topLeft,
                             child: TextButton(
                               onPressed: () {
+                                FocusScope.of(context).unfocus();
                                 Navigator.popAndPushNamed(
                                     context, Home_Login.id);
                               },
@@ -99,10 +111,10 @@ class _SignUpPage extends State<SignUpPage> {
                               ),
                               // nInput(text:),
 
-                              kInputDecoration(
-                                text: 'Username',
-                                obs: false,
-                              ),
+                              nInputDecoration(
+                                  text: 'Username',
+                                  obs: false,
+                                  controller: _usernameController),
                               const SizedBox(
                                 height: 10,
                               ),
@@ -114,17 +126,19 @@ class _SignUpPage extends State<SignUpPage> {
                               const SizedBox(
                                 height: 10,
                               ),
-                              kInputDecoration(
-                                text: 'Phone',
-                                obs: true,
-                              ),
+
+                              nInputDecoration(
+                                  text: "Phone",
+                                  obs: false,
+                                  controller: _phoneController),
                               const SizedBox(
                                 height: 10,
                               ),
-                              kInputDecoration(
-                                text: 'Date of birth',
-                                obs: false,
-                              ),
+
+                              nInputDecoration(
+                                  text: 'Date of birth',
+                                  obs: false,
+                                  controller: _dateofbirthController),
                               const SizedBox(
                                 height: 10,
                               ),
@@ -142,6 +156,8 @@ class _SignUpPage extends State<SignUpPage> {
                                 size: 20,
                                 onPressed: () {
                                   _createAccountWithEmailAndPassword(context);
+
+                                  print(_usernameController.text);
                                 },
                                 color: Colors.white,
                                 gradient: const LinearGradient(colors: [
@@ -181,6 +197,12 @@ class _SignUpPage extends State<SignUpPage> {
           _passwordController.text,
         ),
       );
+      _firestore.collection('users').add({
+        'dateofbirth': _dateofbirthController.text,
+        'email': _emailController.text,
+        'phone': _phoneController.text,
+        'username': _usernameController.text,
+      });
     }
   }
 }

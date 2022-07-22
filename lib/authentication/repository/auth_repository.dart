@@ -32,6 +32,7 @@ class AuthRepository {
       final credential = GoogleAuthProvider.credential(
           accessToken: googleAuth?.accessToken, idToken: googleAuth?.idToken);
       await FirebaseAuth.instance.signInWithCredential(credential);
+      print('token ${googleAuth?.accessToken}');
     } catch (e) {
       throw Exception(e.toString());
     }

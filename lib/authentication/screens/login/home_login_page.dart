@@ -1,17 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:zinggo_social/authentication/screens/login/sign_up1.dart';
 import '../../../themes/app_color.dart';
-import '../../comp/constants.dart';
 import '../../comp/round_btn.dart';
 import 'package:zinggo_social/authentication/screens/login/login_page.dart';
 import 'package:zinggo_social/authentication/screens/login/signup_page.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:google_sign_in/google_sign_in.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:zinggo_social/authentication/screens/login/logined.dart';
-import 'package:email_validator/email_validator.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:zinggo_social/authentication/bloc/auth_bloc.dart';
 
 class Home_Login extends StatefulWidget {
@@ -70,112 +63,109 @@ class _Home_LoginState extends State<Home_Login> {
               );
             }
             if (state is UnAuthenticated) {
-              return SingleChildScrollView(
-                child: Container(
-                  decoration: const BoxDecoration(
-                    image: DecorationImage(
-                        image:
-                            AssetImage('assets/images/background_img/home.png'),
-                        fit: BoxFit.cover),
-                  ),
-                  child: Center(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: [
-                        const SizedBox(
-                          height: 300,
-                        ),
-                        Center(
-                          child: Container(
-                            alignment: Alignment.centerLeft,
-                            margin: const EdgeInsets.symmetric(horizontal: 25),
-                            child: const Text(
-                              'Find new\nfriends nearby',
-                              style:
-                                  TextStyle(color: Colors.white, fontSize: 44),
-                            ),
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 20,
-                        ),
-                        Container(
-                          margin: const EdgeInsets.symmetric(horizontal: 30),
+              return Container(
+                decoration: const BoxDecoration(
+                  image: DecorationImage(
+                      image:
+                          AssetImage('assets/images/background_img/home.png'),
+                      fit: BoxFit.cover),
+                ),
+                child: Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      const SizedBox(
+                        height: 300,
+                      ),
+                      Center(
+                        child: Container(
+                          alignment: Alignment.centerLeft,
+                          margin: const EdgeInsets.symmetric(horizontal: 25),
                           child: const Text(
-                            'With milions of users all over the world, we\n gives you the ability to connect with people\n no matter where you are.',
-                            style: TextStyle(color: Colors.white, fontSize: 17),
+                            'Find new\nfriends nearby',
+                            style: TextStyle(color: Colors.white, fontSize: 44),
                           ),
                         ),
-                        const SizedBox(
-                          height: 44,
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      Container(
+                        margin: const EdgeInsets.symmetric(horizontal: 30),
+                        child: const Text(
+                          'With milions of users all over the world, we\n gives you the ability to connect with people\n no matter where you are.',
+                          style: TextStyle(color: Colors.white, fontSize: 17),
                         ),
-                        RoundButton(
-                          height: 44,
-                          text: 'Login',
-                          size: 20,
-                          onPressed: () {
-                            navigateToLogin();
-                          },
-                          color: Colors.red,
-                          gradient: LinearGradient(
-                              colors: [AppColors.white, AppColors.white]),
+                      ),
+                      const SizedBox(
+                        height: 44,
+                      ),
+                      RoundButton(
+                        height: 44,
+                        text: 'Login',
+                        size: 20,
+                        onPressed: () {
+                          navigateToLogin();
+                        },
+                        color: Colors.red,
+                        gradient: LinearGradient(
+                            colors: [AppColors.white, AppColors.white]),
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      RoundButton(
+                        height: 44,
+                        text: 'Sign Up',
+                        size: 20,
+                        onPressed: () {
+                          navigateToRegister();
+                        },
+                        color: Colors.white,
+                        gradient: LinearGradient(
+                            colors: [AppColors.tanHide, AppColors.redMedium]),
+                      ),
+                      const SizedBox(
+                        height: 30,
+                      ),
+                      Container(
+                        alignment: Alignment.center,
+                        child: const Text('Or login with'),
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      Container(
+                        margin: const EdgeInsets.only(
+                            left: 142, top: 14, bottom: 30, right: 142),
+                        alignment: Alignment.center,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            InkWell(
+                              onTap: () {
+                                print('helle');
+                              },
+                              child:
+                                  Image.asset('assets/images/icons/Path.png'),
+                            ),
+                            InkWell(
+                              onTap: () {},
+                              child: Image.asset(
+                                  'assets/images/icons/Twister.png'),
+                            ),
+                            InkWell(
+                              onTap: () {
+                                _authenticateWithGoogle(context);
+                              },
+                              child:
+                                  Image.asset('assets/images/icons/google.png'),
+                            ),
+                          ],
                         ),
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        RoundButton(
-                          height: 44,
-                          text: 'Sign Up',
-                          size: 20,
-                          onPressed: () {
-                            navigateToRegister();
-                          },
-                          color: Colors.white,
-                          gradient: LinearGradient(
-                              colors: [AppColors.tanHide, AppColors.redMedium]),
-                        ),
-                        const SizedBox(
-                          height: 30,
-                        ),
-                        Container(
-                          alignment: Alignment.center,
-                          child: const Text('Or login with'),
-                        ),
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        Container(
-                          margin: const EdgeInsets.only(
-                              left: 142, top: 14, bottom: 30, right: 142),
-                          alignment: Alignment.center,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              InkWell(
-                                onTap: () {
-                                  print('helle');
-                                },
-                                child:
-                                    Image.asset('assets/images/icons/Path.png'),
-                              ),
-                              InkWell(
-                                onTap: () {},
-                                child: Image.asset(
-                                    'assets/images/icons/Twister.png'),
-                              ),
-                              InkWell(
-                                onTap: () {
-                                  _authenticateWithGoogle(context);
-                                },
-                                child: Image.asset(
-                                    'assets/images/icons/google.png'),
-                              ),
-                            ],
-                          ),
-                        )
-                      ],
-                    ),
+                      )
+                    ],
                   ),
                 ),
               );

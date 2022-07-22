@@ -32,6 +32,7 @@ class _forgot_pass_page extends State<Forgot_Pass_page> {
                   alignment: Alignment.topLeft,
                   child: TextButton(
                     onPressed: () {
+                      FocusScope.of(context).unfocus();
                       Navigator.popAndPushNamed(context, LoginPage.id);
                     },
                     child: Icon(Icons.close),

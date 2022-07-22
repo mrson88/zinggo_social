@@ -81,6 +81,7 @@ class _LoginPageState extends State<LoginPage> {
                             alignment: Alignment.centerLeft,
                             child: TextButton(
                               onPressed: () {
+                                FocusScope.of(context).unfocus();
                                 Navigator.popAndPushNamed(
                                     context, Home_Login.id);
                               },

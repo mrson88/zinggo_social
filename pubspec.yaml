@@ -21,6 +21,7 @@ dependencies:
 
 
   cupertino_icons: ^1.0.2
+  json_annotation: ^4.4.0
 
 dev_dependencies:
   flutter_test:
@@ -35,18 +36,32 @@ dev_dependencies:
   flutter_bloc: ^8.0.1
   equatable: ^2.0.3
   email_validator: ^2.0.1
+  cloud_firestore: ^3.2.1
+  http: ^0.13.4
+  dio: ^4.0.1
+  json_serializable: ^6.3.1
 
+  overlay_support: ^2.0.0
+  path_provider: ^2.0.10
+  animated_text_kit: ^4.2.1
+  cached_network_image: ^3.1.0
+  image_gallery_saver: ^1.7.1
+  gallery_saver: ^2.3.2
+  shared_preferences: ^2.0.8
+  build_runner: ^2.2.0
 
 flutter:
 
 
   uses-material-design: true
   assets:
+    - assets/data/
     - assets/images/2x/
     - assets/images/3x/
     - assets/images/background_img/
     - assets/images/icons/
     - assets/images/
+    - assets/images/icons/navigationbar/
 
 
 

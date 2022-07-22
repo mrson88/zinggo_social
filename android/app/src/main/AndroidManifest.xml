@@ -1,5 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+
     package="com.example.zinggo_social">
+
    <application
         android:label="zinggo_social"
         android:name="${applicationName}"
