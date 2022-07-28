@@ -1,19 +1,12 @@
-import 'dart:async';
-
 import 'package:flutter/cupertino.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'dart:convert';
-import 'package:zinggo_social/home/repository/post_repository.dart';
+
 import 'package:zinggo_social/themes/app_color.dart';
 
-import 'package:http/http.dart' as http;
-import 'package:zinggo_social/models/puclic.dart';
-import 'package:zinggo_social/models/post.dart';
-import 'dart:async';
-
-import '../themes/app_styles.dart';
+import '../../themes/app_styles.dart';
 
 class Home2 extends StatefulWidget {
   const Home2({Key? key}) : super(key: key);
@@ -27,11 +20,8 @@ String hour = ['created_at'].toString().split(':')[1];
 String minute = ['created_at'].toString().split(':')[2];
 
 class _Home2 extends State<Home2> {
-  String urlString = 'https://api.dofhunt.200lab.io/v1/posts';
-  final StreamController<List> _streamController = StreamController();
   List _user = [];
   List _chat = [];
-  List list = [];
 
   // Fetch content from the json file
   Future<void> readJson() async {
@@ -45,19 +35,16 @@ class _Home2 extends State<Home2> {
     setState(() {
       _user = userdata["results"];
       _chat = chatted["results"];
+
+      // print(_user);
+      // print(_chat);
     });
   }
 
   @override
   void initState() {
     super.initState();
-    _useHttp();
-  }
-
-  @override
-  void dispose() {
-    _streamController.close();
-    super.dispose();
+    readJson();
   }
 
   @override
@@ -70,81 +57,53 @@ class _Home2 extends State<Home2> {
     );
   }
 
-  Future<void> _useHttp() async {
-    try {
-      final res = await http.get(Uri.parse(urlString), headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-        'Authorization': 'Bearer $userToken',
-      });
-
-      final users = await jsonDecode(res.body);
-
-      _user = users['data'];
-      list = _user.map((data) => Post.fromJson(data)).toList();
-
-      _streamController.sink.add(list);
-    } catch (e) {
-      debugPrint('error = $e');
-      rethrow;
-    }
-  }
-
   Widget getBody() {
-    return StreamBuilder(
-      builder: (_, snapshot) {
-        return ListView(
-          children: [
-            Container(
-              margin: EdgeInsets.only(top: 18, left: 14, right: 15),
-              child: CupertinoSearchTextField(
-                itemColor: AppColors.white,
-                itemSize: 26,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(18),
-                    color: AppColors.blur),
-              ),
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            Container(
-              padding: const EdgeInsets.only(left: 15, bottom: 24),
-              child: Text(
-                "What's new?",
-                style: AppStyles.h1,
-              ),
-            ),
-            Container(
-              color: Colors.black,
-              child: const SizedBox(
-                height: 1,
-              ),
-            ),
-            _scrollViewHorizontal(snapshot.data),
-            Container(
-              color: Colors.black,
-              child: const SizedBox(
-                height: 2,
-              ),
-            ),
-            // _scrollViewVetical(_chat, context),
-            _scrollViewVetical(snapshot.data, context)
-          ],
-        );
-      },
-      stream: _streamController.stream,
-      initialData: const [],
+    return ListView(
+      children: [
+        Container(
+          margin: EdgeInsets.only(top: 18, left: 14, right: 15),
+          child: CupertinoSearchTextField(
+            itemColor: AppColors.white,
+            itemSize: 26,
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(18), color: AppColors.blur),
+          ),
+        ),
+        const SizedBox(
+          height: 10,
+        ),
+        Container(
+          padding: const EdgeInsets.only(left: 15, bottom: 24),
+          child: Text(
+            "What's new?",
+            style: AppStyles.h1,
+          ),
+        ),
+        Container(
+          color: Colors.black,
+          child: const SizedBox(
+            height: 1,
+          ),
+        ),
+        _scrollViewHorizontal(_user),
+        Container(
+          color: Colors.black,
+          child: const SizedBox(
+            height: 2,
+          ),
+        ),
+        _scrollViewVetical(_chat, context)
+      ],
     );
   }
 }
 
-SingleChildScrollView _scrollViewHorizontal(users) {
+SingleChildScrollView _scrollViewHorizontal(List user) {
   return SingleChildScrollView(
     scrollDirection: Axis.horizontal,
-    child: users.isNotEmpty
+    child: user.isNotEmpty
         ? Row(
-            children: List.generate(users.length, (index) {
+            children: List.generate(user.length, (index) {
               return Padding(
                 padding: const EdgeInsets.only(top: 15, bottom: 18, left: 16),
                 child: Column(
@@ -164,7 +123,7 @@ SingleChildScrollView _scrollViewHorizontal(users) {
                                     borderRadius: BorderRadius.circular(8),
                                     image: DecorationImage(
                                         image: NetworkImage(
-                                            users[index].user.avatar.url),
+                                            user[index]['picture']['large']),
                                         fit: BoxFit.cover)),
                               ),
                               Container(
@@ -178,22 +137,14 @@ SingleChildScrollView _scrollViewHorizontal(users) {
                                       decoration: BoxDecoration(
                                           shape: BoxShape.circle,
                                           image: DecorationImage(
-                                              image: NetworkImage(
-                                                  users[index].user.avatar.url),
+                                              image: NetworkImage(user[index]
+                                                  ['picture']['thumbnail']),
                                               fit: BoxFit.cover)),
                                     ),
                                     Container(
                                       padding: EdgeInsets.only(left: 10),
                                       child: Text(
-                                        (users[index]
-                                                .user
-                                                .firstName
-                                                .toString() +
-                                            ' ' +
-                                            users[index]
-                                                .user
-                                                .lastName
-                                                .toString()),
+                                        user[index]['name'].toString(),
                                         style: AppStyles.h5,
                                       ),
                                     )
@@ -202,23 +153,23 @@ SingleChildScrollView _scrollViewHorizontal(users) {
                               ),
                             ],
                           ),
-                          // user[index]['status'].toString() == 'online'
-                          //     ? Positioned(
-                          //         top: 45,
-                          //         left: 42,
-                          //         child: Container(
-                          //           width: 15,
-                          //           height: 15,
-                          //           decoration: BoxDecoration(
-                          //             color: Colors.green,
-                          //             shape: BoxShape.circle,
-                          //             border: Border.all(
-                          //                 color: AppColors.textColor,
-                          //                 width: 2.5),
-                          //           ),
-                          //         ),
-                          //       )
-                          //     : Container()
+                          user[index]['status'].toString() == 'online'
+                              ? Positioned(
+                                  top: 45,
+                                  left: 42,
+                                  child: Container(
+                                    width: 15,
+                                    height: 15,
+                                    decoration: BoxDecoration(
+                                      color: Colors.green,
+                                      shape: BoxShape.circle,
+                                      border: Border.all(
+                                          color: AppColors.textColor,
+                                          width: 2.5),
+                                    ),
+                                  ),
+                                )
+                              : Container()
                         ],
                       ),
                     ),
@@ -231,14 +182,14 @@ SingleChildScrollView _scrollViewHorizontal(users) {
   );
 }
 
-Widget _scrollViewVetical(users, context) {
-  // String hour(int index) {
-  //   return chatUser[index]['created_at'].toString().split(':')[1];
-  // }
-  //
-  // String minute(int index) {
-  //   return chatUser[index]['created_at'].toString().split(':')[2].split('.')[0];
-  // }
+Widget _scrollViewVetical(List chatUser, context) {
+  String hour(int index) {
+    return chatUser[index]['created_at'].toString().split(':')[1];
+  }
+
+  String minute(int index) {
+    return chatUser[index]['created_at'].toString().split(':')[2].split('.')[0];
+  }
 
   return Container(
     margin: const EdgeInsets.symmetric(horizontal: 15),
@@ -246,7 +197,7 @@ Widget _scrollViewVetical(users, context) {
       scrollDirection: Axis.vertical,
       child: Column(
         children: List.generate(
-          users.length,
+          chatUser.length,
           (index) => Container(
             padding: const EdgeInsets.only(top: 10),
             child: Container(
@@ -274,8 +225,8 @@ Widget _scrollViewVetical(users, context) {
                         decoration: BoxDecoration(
                             shape: BoxShape.circle,
                             image: DecorationImage(
-                                image:
-                                    NetworkImage(users[index].user.avatar.url),
+                                image: NetworkImage(chatUser[index]['user']
+                                    ['picture']['medium']),
                                 fit: BoxFit.cover)),
                       ),
                       Container(
@@ -285,22 +236,20 @@ Widget _scrollViewVetical(users, context) {
                           children: [
                             Container(
                               child: Text(
-                                '${users[index].user.firstName}'
-                                ' ${users[index].user.lastName}',
+                                '${chatUser[index]['user']['name']}',
                                 style: AppStyles.h3,
                               ),
                             ),
                             Container(
                               margin: const EdgeInsets.only(right: 15),
-                              child: const Text(
-                                '',
-                                // int.parse(hour(index = index)) < 12
-                                //     ? '${hour(index = index)} '
-                                //         ': ${minute(index = index)} AM'
-                                //     : '0${int.parse(hour(index = index)) - 12} '
-                                //         ': ${minute(index = index)} PM',
-                                // style: AppStyles.h4,
-                                // overflow: TextOverflow.ellipsis,
+                              child: Text(
+                                int.parse(hour(index = index)) < 12
+                                    ? '${hour(index = index)} '
+                                        ': ${minute(index = index)} AM'
+                                    : '0${int.parse(hour(index = index)) - 12} '
+                                        ': ${minute(index = index)} PM',
+                                style: AppStyles.h4,
+                                overflow: TextOverflow.ellipsis,
                               ),
                             ),
                           ],
@@ -316,7 +265,7 @@ Widget _scrollViewVetical(users, context) {
                           child: InkWell(
                             child: Image(
                               image: NetworkImage(
-                                  users[index].photos[0].image.url),
+                                  chatUser[index]['user']['picture']['large']),
                             ),
                           ),
                         ),
@@ -324,7 +273,8 @@ Widget _scrollViewVetical(users, context) {
                           flex: 1,
                           child: InkWell(
                             child: Image(
-                              image: NetworkImage(users[index].user.avatar.url),
+                              image: NetworkImage(
+                                  chatUser[index]['user']['picture']['large']),
                             ),
                           ),
                         ),
@@ -342,7 +292,7 @@ Widget _scrollViewVetical(users, context) {
                         direction: Axis.horizontal,
                         children: [
                           Text(
-                            '${users[index].user.firstName}',
+                            '${chatUser[index]['text']}',
                             style: AppStyles.h3,
                             maxLines: 4,
                           ),

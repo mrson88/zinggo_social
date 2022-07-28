@@ -1,13 +1,11 @@
 part of 'post_bloc.dart';
 
-@immutable
 abstract class PostEvent extends Equatable {
-  @override
-  List<Object> get props => [];
+  const PostEvent();
 }
 
-class LoadData extends PostEvent {
-  final String userdata;
-
-  LoadData(this.userdata);
+class LoadApiEvent extends PostEvent {
+  @override
+  // TODO: implement props
+  List<Object?> get props => [];
 }

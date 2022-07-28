@@ -1,15 +1,18 @@
-import 'dart:async';
 import 'package:equatable/equatable.dart';
-import 'package:bloc/bloc.dart';
-import 'package:meta/meta.dart';
-
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:zinggo_social/home/repository/post_repository.dart';
 part 'post_event.dart';
 part 'post_state.dart';
 
 class PostBloc extends Bloc<PostEvent, PostState> {
-  PostBloc() : super(PostInitial()) {
-    on<PostEvent>((event, emit) {
-      // TODO: implement event handler
-    });
+  final PostRepository _boredService;
+  PostBloc(this._boredService) : super(PostLoadingState()) {
+    on<PostEvent>(
+      (event, emit) async {
+        // TODO: implement event handler
+        final model = await _boredService.useHttp();
+        emit(PostLoadedState(model));
+      },
+    );
   }
 }

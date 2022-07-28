@@ -6,7 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:zinggo_social/authentication/screens/login/login_page.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-import 'package:zinggo_social/home/control_home.dart';
+import 'package:zinggo_social/home/screens/control_home.dart';
 
 final _firestore = FirebaseFirestore.instance;
 

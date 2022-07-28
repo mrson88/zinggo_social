@@ -1,4 +1,4 @@
-import 'package:zinggo_social/modules/navigationbar_item.dart';
+import 'package:zinggo_social/authentication/screens/login/home_login_page.dart';
 import 'package:zinggo_social/modules/scrollViewVeticalChatuser.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -6,8 +6,6 @@ import 'dart:convert';
 import 'package:zinggo_social/modules/scrollViewItemHorizontal.dart';
 
 import 'package:zinggo_social/themes/app_color.dart';
-
-import 'package:zinggo_social/home/home_2.dart';
 
 class MesHomePage extends StatefulWidget {
   const MesHomePage({Key? key}) : super(key: key);
@@ -17,7 +15,6 @@ class MesHomePage extends StatefulWidget {
   State<MesHomePage> createState() => _HomePageState();
 }
 
-int _selectedIndex = 0;
 String hour = ['created_at'].toString().split(':')[1];
 String minute = ['created_at'].toString().split(':')[2];
 
@@ -68,7 +65,7 @@ class _HomePageState extends State<MesHomePage> {
             children: [
               TextButton(
                 onPressed: () => setState(() {
-                  Navigator.pop(context);
+                  Navigator.popAndPushNamed(context, Home_Login.id);
                   // print(_user);
                 }),
                 child: const Icon(
@@ -79,7 +76,6 @@ class _HomePageState extends State<MesHomePage> {
               ),
               TextButton(
                 onPressed: () => setState(() {
-                  readJson();
                   // print(_user);
                 }),
                 child: const Icon(

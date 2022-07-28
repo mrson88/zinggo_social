@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:zinggo_social/home/home_2.dart';
-import 'package:zinggo_social/home/mes_page.dart';
-import 'package:zinggo_social/home/notification_page.dart';
+import 'package:zinggo_social/home/screens/home_2.dart';
+import 'package:zinggo_social/home/screens/mes_page.dart';
+import 'package:zinggo_social/home/screens/notification_page.dart';
 import 'package:zinggo_social/modules/navigationbar_item.dart';
 import 'package:zinggo_social/themes/app_color.dart';
 
