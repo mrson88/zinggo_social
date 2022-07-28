@@ -13,7 +13,7 @@ import 'package:zinggo_social/authentication/screens/login/notification_screen_p
 import 'package:zinggo_social/home/screens/mes_page.dart';
 import 'package:zinggo_social/home/screens/home_2.dart';
 import 'package:zinggo_social/home/screens/control_home.dart';
-import 'package:zinggo_social/home/screens/downloadFile.dart';
+
 import 'package:zinggo_social/home/screens/home_test.dart';
 
 Future<void> main() async {
@@ -61,7 +61,6 @@ class MyApp extends StatelessWidget {
             MesHomePage.id: (context) => const MesHomePage(),
             Home2.id: (context) => const Home2(),
             ControlHomePage.id: (context) => const ControlHomePage(),
-            DownloadFile.id: (context) => const DownloadFile(),
             HomeTest.id: (context) => const HomeTest(),
           },
         ),
