@@ -1,25 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:zinggo_social/authentication/bloc/auth_bloc.dart';
-import 'package:zinggo_social/authentication/repository/auth_repository.dart';
-import 'package:zinggo_social/home/repository/post_repository.dart';
-import 'package:zinggo_social/authentication/screens/login/home_login_page.dart';
-import 'authentication/screens/login/login_page.dart';
-import 'authentication/screens/login/forgot_pass_page.dart';
-import 'authentication/screens/login/signup_page.dart';
+import 'package:zinggo_social/blocs/blocs.dart';
+import 'package:zinggo_social/blocs/authentication/auth_bloc.dart';
+import 'package:zinggo_social/repositories/repositories.dart';
+import 'package:zinggo_social/screens/screens.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:zinggo_social/authentication/screens/login/logined.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:zinggo_social/authentication/screens/login/notification_screen_pick.dart';
-import 'package:zinggo_social/home/screens/mes_page.dart';
-import 'package:zinggo_social/home/screens/home_2.dart';
-import 'package:zinggo_social/home/screens/control_home.dart';
-
-import 'package:zinggo_social/home/screens/home_test.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -50,7 +40,7 @@ class MyApp extends StatelessWidget {
           theme: ThemeData(
             primarySwatch: Colors.blue,
           ),
-          initialRoute: HomeTest.id,
+          initialRoute: Home_Login.id,
           routes: {
             Home_Login.id: (context) => Home_Login(),
             LoginPage.id: (context) => const LoginPage(),
