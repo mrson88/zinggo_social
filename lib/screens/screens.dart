@@ -1,0 +1,11 @@
+export 'home/control_home.dart';
+export 'home/home_2.dart';
+export 'home/home_test.dart';
+export 'home/mes_page.dart';
+export 'home/notification_page.dart';
+export 'login/forgot_pass_page.dart';
+export 'login/home_login_page.dart';
+export 'login/login_page.dart';
+export 'login/logined.dart';
+// export 'login/notification_screen_pick.dart';
+export 'login/signup_page.dart';
