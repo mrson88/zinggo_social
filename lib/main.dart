@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:zinggo_social/blocs/blocs.dart';
 import 'package:zinggo_social/blocs/authentication/auth_bloc.dart';
+import 'package:zinggo_social/config/app_router.dart';
 import 'package:zinggo_social/repositories/repositories.dart';
+
 import 'package:zinggo_social/screens/screens.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -26,6 +28,9 @@ class MyApp extends StatelessWidget {
         RepositoryProvider(
           create: (context) => PostRepository(),
         ),
+        RepositoryProvider(
+          create: (context) => PostApi(),
+        ),
       ],
       child: MultiBlocProvider(
         providers: [
@@ -40,19 +45,8 @@ class MyApp extends StatelessWidget {
           theme: ThemeData(
             primarySwatch: Colors.blue,
           ),
-          initialRoute: Home_Login.id,
-          routes: {
-            Home_Login.id: (context) => Home_Login(),
-            LoginPage.id: (context) => const LoginPage(),
-            Forgot_Pass_page.id: (context) => const Forgot_Pass_page(),
-            SignUpPage.id: (context) => const SignUpPage(),
-            LogIned.id: (context) => LogIned(),
-            NotificationPage.id: (context) => const NotificationPage(),
-            MesHomePage.id: (context) => const MesHomePage(),
-            Home2.id: (context) => const Home2(),
-            ControlHomePage.id: (context) => const ControlHomePage(),
-            HomeTest.id: (context) => const HomeTest(),
-          },
+          onGenerateRoute: AppRouter.onGenerateRoute,
+          initialRoute: PostPage.id,
         ),
       ),
     );

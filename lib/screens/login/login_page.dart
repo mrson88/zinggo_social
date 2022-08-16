@@ -11,7 +11,13 @@ import 'logined.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
-  static String id = 'Login_Page';
+  static const String id = 'Login_Page';
+  static Route route() {
+    return MaterialPageRoute(
+      settings: RouteSettings(name: id),
+      builder: (_) =>  LoginPage(),
+    );
+  }
 
   @override
   State<LoginPage> createState() => _LoginPageState();

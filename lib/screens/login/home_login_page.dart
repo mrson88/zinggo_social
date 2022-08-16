@@ -7,7 +7,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:zinggo_social/blocs/authentication/auth_bloc.dart';
 
 class Home_Login extends StatefulWidget {
-  static String id = 'Home_Login_Page';
+  static const String id = 'Home_Login_Page';
+  static Route route() {
+    return MaterialPageRoute(
+      settings: RouteSettings(name: id),
+      builder: (_) => Home_Login(),
+    );
+  }
 
   @override
   State<Home_Login> createState() => _Home_LoginState();

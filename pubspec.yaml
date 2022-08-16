@@ -26,6 +26,7 @@ dependencies:
   flutter_bloc: ^8.0.1
   equatable: ^2.0.3
   firebase_core: ^1.18.0
+  bloc_concurrency:
 
 dev_dependencies:
   flutter_test:
@@ -48,6 +49,9 @@ dev_dependencies:
   gallery_saver: ^2.3.2
   shared_preferences: ^2.0.8
   build_runner: ^2.2.0
+  permission_handler: ^8.2.6
+  multi_image_picker2: ^5.0.2
+
 
 flutter:
 

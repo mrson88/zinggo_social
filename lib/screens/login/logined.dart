@@ -9,7 +9,13 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 final _firestore = FirebaseFirestore.instance;
 
 class LogIned extends StatefulWidget {
-  static String id = 'LogIned';
+  static const String id = 'LogIned';
+  static Route route() {
+    return MaterialPageRoute(
+      settings: RouteSettings(name: id),
+      builder: (_) => LogIned(),
+    );
+  }
   @override
   _LogIned createState() => _LogIned();
 }

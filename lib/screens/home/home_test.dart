@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:zinggo_social/themes/app_color.dart';
+import '../../repositories/home/list_post_paging_repo.dart';
+import '../../repositories/home/list_posts_repo.dart';
 import '../../themes/app_styles.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:zinggo_social/blocs/blocs.dart';
@@ -10,16 +12,26 @@ import 'package:zinggo_social/widgets/home/post_item_remake.dart';
 
 class HomeTest extends StatefulWidget {
   const HomeTest({Key? key}) : super(key: key);
-  static String id = 'Home_Test';
+  static const String id = 'Home_Test';
+  static Route route() {
+    return MaterialPageRoute(
+      settings: RouteSettings(name: id),
+      builder: (_) => HomeTest(),
+    );
+  }
 
   @override
   State<HomeTest> createState() => _HomeTest();
 }
 
-// String hour = ['created_at'].toString().split(':')[1];
-// String minute = ['created_at'].toString().split(':')[2];
-
 class _HomeTest extends State<HomeTest> {
+  late final _scrollCtrl = ScrollController();
+  @override
+  void dispose() {
+    _scrollCtrl.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -76,7 +88,7 @@ class _HomeTest extends State<HomeTest> {
 SingleChildScrollView _scrollViewHorizontal(users) {
   return SingleChildScrollView(
     scrollDirection: Axis.horizontal,
-    child: users.model.isNotEmpty
+    child: users.data.isNotEmpty
         ? Row(
             children: List.generate(users.model.length, (index) {
               return Padding(

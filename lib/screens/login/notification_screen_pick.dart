@@ -3,6 +3,12 @@ import 'package:flutter/material.dart';
 class NotificationPage extends StatefulWidget {
   const NotificationPage({Key? key}) : super(key: key);
   static String id = 'notification_page2';
+  static Route route() {
+    return MaterialPageRoute(
+      settings: RouteSettings(name: id),
+      builder: (_) => NotificationPage(),
+    );
+  }
 
   @override
   State<NotificationPage> createState() => _NotificationPageState();

@@ -1,5 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
 
+import '../utils/photo_utils.dart';
+
 part 'picture.g.dart';
 
 @JsonSerializable()
@@ -26,6 +28,19 @@ class Picture {
   //   return (orgHeight > 2048) ? '$url?h=$maxSize' : url;
   // }
   //
+
+  String cloudUrl([int w = 100, int h = 100]) {
+    final userAvtUrl = url ?? '';
+    if (userAvtUrl.startsWith('https://dofhunt.imgix.net')) {
+      return PhotoUtils.genImgIx(userAvtUrl, w, h, focusFace: true);
+    }
+
+    if (userAvtUrl.startsWith('https://graph.facebook.com')) {
+      return PhotoUtils.genFbImg(userAvtUrl, 100, 100);
+    }
+
+    return userAvtUrl;
+  }
 
   factory Picture.fromJson(Map<String, dynamic> json) =>
       _$PictureFromJson(json);

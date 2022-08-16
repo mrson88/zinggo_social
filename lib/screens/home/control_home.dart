@@ -7,7 +7,14 @@ import 'package:zinggo_social/themes/app_color.dart';
 
 class ControlHomePage extends StatefulWidget {
   const ControlHomePage({Key? key}) : super(key: key);
-  static String id = 'Control_HomePage';
+  static const String id = 'Control_HomePage';
+  static Route route() {
+    return MaterialPageRoute(
+      settings: RouteSettings(name: id),
+      builder: (_) => ControlHomePage(),
+    );
+  }
+
   @override
   State<ControlHomePage> createState() => _MyStatefulWidgetState();
 }

@@ -21,9 +21,10 @@ class PostErrorState extends PostState {
 
 class PostLoadedState extends PostState {
   final List model;
+  final bool hasReachedMax;
 
-  const PostLoadedState(this.model);
+  const PostLoadedState(this.model, this.hasReachedMax);
   @override
   // TODO: implement props
-  List<Object?> get props => [];
+  List<Object?> get props => [model];
 }

@@ -19,7 +19,7 @@ class _PostItemRemakeState extends State<PostItemRemake> {
     return Container(
       padding: const EdgeInsets.only(top: 8),
       child: GestureDetector(
-        onTap: () => null,
+        onTap: () => print('hello'),
         child: Card(
           margin: const EdgeInsets.symmetric(horizontal: 8),
           shape: RoundedRectangleBorder(

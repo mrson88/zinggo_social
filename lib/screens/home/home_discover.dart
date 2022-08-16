@@ -11,6 +11,12 @@ import '../../themes/app_styles.dart';
 class Home2 extends StatefulWidget {
   const Home2({Key? key}) : super(key: key);
   static String id = 'Home_2';
+  static Route route() {
+    return MaterialPageRoute(
+      settings: RouteSettings(name: id),
+      builder: (_) => Home2(),
+    );
+  }
 
   @override
   State<Home2> createState() => _Home2();

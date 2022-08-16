@@ -6,7 +6,13 @@ import 'package:zinggo_social/widgets/constants.dart';
 
 class Forgot_Pass_page extends StatefulWidget {
   const Forgot_Pass_page({Key? key}) : super(key: key);
-  static String id = 'forgot_pass_screen';
+  static const String id = 'forgot_pass_screen';
+  static Route route() {
+    return MaterialPageRoute(
+      settings: RouteSettings(name: id),
+      builder: (_) => Forgot_Pass_page(),
+    );
+  }
 
   @override
   State<Forgot_Pass_page> createState() => _forgot_pass_page();

@@ -8,7 +8,13 @@ import '../../themes/app_styles.dart';
 
 class NotificationPage extends StatefulWidget {
   const NotificationPage({Key? key}) : super(key: key);
-  static String id = 'Notification';
+  static const String id = 'Notification';
+  static Route route() {
+    return MaterialPageRoute(
+      settings: RouteSettings(name: id),
+      builder: (_) => NotificationPage(),
+    );
+  }
 
   @override
   State<NotificationPage> createState() => _NotificationPage();

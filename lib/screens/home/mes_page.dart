@@ -9,7 +9,13 @@ import 'package:zinggo_social/themes/app_color.dart';
 
 class MesHomePage extends StatefulWidget {
   const MesHomePage({Key? key}) : super(key: key);
-  static String id = 'Message_HomePage';
+  static const String id = 'Message_HomePage';
+  static Route route() {
+    return MaterialPageRoute(
+      settings: RouteSettings(name: id),
+      builder: (_) => MesHomePage(),
+    );
+  }
 
   @override
   State<MesHomePage> createState() => _HomePageState();

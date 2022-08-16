@@ -1,26 +1,37 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:zinggo_social/themes/app_color.dart';
+
 import '../../themes/app_styles.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:zinggo_social/blocs/blocs.dart';
 import 'package:zinggo_social/repositories/repositories.dart';
 
+import '../../widgets/home/post_item_remake.dart';
+import 'create_post_page.dart';
+
 class Home2 extends StatefulWidget {
   const Home2({Key? key}) : super(key: key);
-  static String id = 'Home_2';
+  static const String id = 'Home_2';
+  static Route route() {
+    return MaterialPageRoute(
+      settings: RouteSettings(name: id),
+      builder: (_) => Home2(),
+    );
+  }
 
   @override
   State<Home2> createState() => _Home2();
 }
 
-// String hour = ['created_at'].toString().split(':')[1];
-// String minute = ['created_at'].toString().split(':')[2];
-
 class _Home2 extends State<Home2> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        child: const Icon(Icons.add),
+        onPressed: () => Navigator.pushNamed(context, CreatePostPage.id),
+      ),
       backgroundColor: AppColors.primaryColor,
       body: getBody(),
     );
@@ -61,7 +72,7 @@ class _Home2 extends State<Home2> {
                 ),
               ),
               _scrollViewHorizontal(state),
-              _scrollViewVetical(state, context)
+              _scrollViewVertical(state)
             ]);
           }
           return Container();
@@ -129,23 +140,6 @@ SingleChildScrollView _scrollViewHorizontal(users) {
                               ),
                             ],
                           ),
-                          // user[index]['status'].toString() == 'online'
-                          //     ? Positioned(
-                          //         top: 45,
-                          //         left: 42,
-                          //         child: Container(
-                          //           width: 15,
-                          //           height: 15,
-                          //           decoration: BoxDecoration(
-                          //             color: Colors.green,
-                          //             shape: BoxShape.circle,
-                          //             border: Border.all(
-                          //                 color: AppColors.textColor,
-                          //                 width: 2.5),
-                          //           ),
-                          //         ),
-                          //       )
-                          //     : Container()
                         ],
                       ),
                     ),
@@ -158,15 +152,7 @@ SingleChildScrollView _scrollViewHorizontal(users) {
   );
 }
 
-Widget _scrollViewVetical(users, context) {
-  // String hour(int index) {
-  //   return chatUser[index]['created_at'].toString().split(':')[1];
-  // }
-  //
-  // String minute(int index) {
-  //   return chatUser[index]['created_at'].toString().split(':')[2].split('.')[0];
-  // }
-
+Widget _scrollViewVertical(users) {
   return Container(
     margin: const EdgeInsets.symmetric(horizontal: 15),
     child: SingleChildScrollView(
@@ -218,16 +204,26 @@ Widget _scrollViewVetical(users, context) {
                               style: AppStyles.h3,
                             ),
                             Container(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 20),
                               margin: const EdgeInsets.only(right: 15),
-                              child: const Text(
-                                '',
-                                // int.parse(hour(index = index)) < 12
-                                //     ? '${hour(index = index)} '
-                                //         ': ${minute(index = index)} AM'
-                                //     : '0${int.parse(hour(index = index)) - 12} '
-                                //         ': ${minute(index = index)} PM',
-                                // style: AppStyles.h4,
-                                // overflow: TextOverflow.ellipsis,
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceAround,
+                                children: [
+                                  Text(
+                                    '${users.model[index].photos[0].createdAt.toString().split(' ')[0]}',
+                                    style: AppStyles.h4,
+                                  ),
+                                  Container(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 20),
+                                    child: Text(
+                                      'length=${users.model[index].photos.length}',
+                                      style: AppStyles.h4,
+                                    ),
+                                  )
+                                ],
                               ),
                             ),
                           ],
@@ -235,31 +231,7 @@ Widget _scrollViewVetical(users, context) {
                       ),
                     ],
                   ),
-                  Container(
-                    padding: const EdgeInsets.only(top: 10),
-                    child: Row(
-                      children: [
-                        Expanded(
-                          flex: 1,
-                          child: InkWell(
-                            child: Image(
-                              image: NetworkImage(
-                                  users.model[index].photos[0].image.url),
-                            ),
-                          ),
-                        ),
-                        Expanded(
-                          flex: 1,
-                          child: InkWell(
-                            child: Image(
-                              image: NetworkImage(
-                                  users.model[index].user.avatar.url),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
+                  PostItemRemake(post: users.model[index]),
                   const SizedBox(
                     height: 15,
                   ),

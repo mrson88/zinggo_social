@@ -12,7 +12,13 @@ final _firestore = FirebaseFirestore.instance;
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({Key? key}) : super(key: key);
-  static String id = 'signup_screen';
+  static const String id = 'signup_screen';
+  static Route route() {
+    return MaterialPageRoute(
+      settings: RouteSettings(name: id),
+      builder: (_) => SignUpPage(),
+    );
+  }
 
   @override
   State<SignUpPage> createState() => _SignUpPage();

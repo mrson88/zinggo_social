@@ -9,3 +9,8 @@ export 'login/login_page.dart';
 export 'login/logined.dart';
 // export 'login/notification_screen_pick.dart';
 export 'login/signup_page.dart';
+export 'home/home_test2.dart';
+export 'home2/post_page.dart';
+export 'home2/post_list.dart';
+export 'home2/post_detail.dart';
+export 'home/create_post_page.dart';
