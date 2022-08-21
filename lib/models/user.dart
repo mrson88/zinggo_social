@@ -28,9 +28,9 @@ class User {
 
   String get displayUsername => '@${username ?? ""}';
 
-  // String get imgUrl {
-  //   return avatar?.cloudUrl() ?? '';
-  // }
+  String get imgUrl {
+    return avatar?.cloudUrl() ?? '';
+  }
 
   factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
 

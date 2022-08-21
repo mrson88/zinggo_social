@@ -26,7 +26,7 @@ class Post {
   final List<Photo>? photos;
 
   @JsonKey(name: 'comment_counts', includeIfNull: false)
-  final int? commentCounts;
+  late final int? commentCounts;
 
   @JsonKey(name: 'like_counts', includeIfNull: false)
   int? likeCounts;
@@ -50,7 +50,7 @@ class Post {
     this.user,
   });
 
-  // String? get urlUserAvatar => user?.imgUrl;
+  String? get urlUserAvatar => user?.imgUrl;
 
   String get displayName => user?.displayName ?? '';
 

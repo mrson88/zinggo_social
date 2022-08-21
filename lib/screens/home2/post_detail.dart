@@ -1,18 +1,52 @@
 import 'package:flutter/material.dart';
+import 'package:http/http.dart';
 import 'package:zinggo_social/models/post.dart';
+import 'package:zinggo_social/providers/bloc_provider.dart';
+import 'package:zinggo_social/screens/home2/list_commend_page.dart';
+import 'package:zinggo_social/screens/post_detail/comments_bloc.dart';
+import 'package:zinggo_social/screens/post_detail/post_detail_bloc.dart';
 import 'package:zinggo_social/themes/app_color.dart';
 import 'package:zinggo_social/themes/app_styles.dart';
+import 'package:zinggo_social/widgets/action_post.dart';
 import 'package:zinggo_social/widgets/home/post_item_remake.dart';
+import 'package:zinggo_social/widgets/list_comment.dart';
 
-class PostDetail extends StatelessWidget {
+class PostDetail extends StatefulWidget {
   const PostDetail({Key? key, required this.post}) : super(key: key);
-
+  static const String id = 'PostDetail';
   final Post post;
 
   @override
+  State<PostDetail> createState() => _PostDetailState();
+}
+
+class _PostDetailState extends State<PostDetail> {
+  Route route() {
+    return MaterialPageRoute(
+      settings: RouteSettings(name: PostDetail.id),
+      builder: (_) => PostDetail(
+        post: widget.post,
+      ),
+    );
+  }
+
+  PostDetailBloc? get bloc => BlocProvider.of<PostDetailBloc>(context);
+  CommentBloc? get cmtBloc => BlocProvider.of<CommentBloc>(context);
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   bloc!.getPost();
+  //   cmtBloc!.getComments();
+  // }
+
+  @override
   Widget build(BuildContext context) {
+    // print(post.id.toString());
     return Scaffold(
       appBar: AppBar(
+        actions: [
+          IconButton(onPressed: _writeCmt, icon: const Icon(Icons.add))
+        ],
         title: Text("Detail Post"),
       ),
       body: Container(
@@ -21,7 +55,14 @@ class PostDetail extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                _scrollViewVertical(post),
+                _scrollViewVertical(widget.post),
+                ActionPost(post: widget.post),
+                const Divider(thickness: 1),
+                widget.post.commentCounts! > 0
+                    ? ListCommentPage(
+                        post: widget.post,
+                      )
+                    : Container()
               ],
             ),
           ),
@@ -29,6 +70,23 @@ class PostDetail extends StatelessWidget {
       ),
     );
   }
+
+  Future<void> _writeCmt() async {
+    const content = 'I love this picture ^^ ';
+    try {
+      return cmtBloc!.writeCmt(content);
+    } catch (e) {
+      print('Write comment error');
+    }
+  }
+
+  // Future<void> deletePost() async {
+  //   try {
+  //     return bloc!.deletePost().then((value) {
+  //       Navigator.pop(context);
+  //     });
+  //   } catch (e) {}
+  // }
 }
 
 Widget _scrollViewVertical(state) {
@@ -36,7 +94,7 @@ Widget _scrollViewVertical(state) {
     decoration: BoxDecoration(
         boxShadow: [
           BoxShadow(
-            color: Colors.grey.withOpacity(0.5),
+            color: Colors.blue.withOpacity(0.5),
             spreadRadius: 5,
             blurRadius: 7,
             offset: const Offset(0, 3), // changes position of shadow

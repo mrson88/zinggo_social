@@ -14,3 +14,4 @@ export 'home2/post_page.dart';
 export 'home2/post_list.dart';
 export 'home2/post_detail.dart';
 export 'home/create_post_page.dart';
+export 'post_detail/post_detail_page.dart';
