@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:zinggo_social/screens/home/home_2.dart';
 import 'package:zinggo_social/screens/home/mes_page.dart';
 import 'package:zinggo_social/screens/home/notification_page.dart';
+import 'package:zinggo_social/screens/home2/post_page.dart';
 import 'package:zinggo_social/widgets/navigationbar_item.dart';
 import 'package:zinggo_social/themes/app_color.dart';
 
@@ -24,7 +25,7 @@ class _MyStatefulWidgetState extends State<ControlHomePage> {
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static const List<Widget> _widgetOptions = <Widget>[
-    Home2(),
+    PostPage(),
     Text(
       'Index 0: Home',
       style: optionStyle,

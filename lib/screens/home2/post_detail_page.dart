@@ -6,6 +6,7 @@ import 'package:zinggo_social/providers/bloc_provider.dart';
 import 'package:zinggo_social/screens/home2/list_commend_page.dart';
 import 'package:zinggo_social/screens/post_detail/comments_bloc.dart';
 import 'package:zinggo_social/screens/post_detail/post_detail_bloc.dart';
+import 'package:zinggo_social/themes/app_styles.dart';
 import 'package:zinggo_social/widgets/action_post.dart';
 import 'package:zinggo_social/widgets/home/grid_image.dart';
 import 'package:zinggo_social/widgets/list_comment.dart';
@@ -83,6 +84,7 @@ class _PostDetailPageState extends State<PostDetailPage> with DialogErrorMixin {
                               ),
                             ),
                             GridImage(photos: post.photos!, padding: 0),
+                            // _scrollViewHorizontal(post),
                             ActionPost(post: post),
                             const Divider(thickness: 1),
                             ListCommentPage(post: widget.post),
@@ -112,4 +114,74 @@ class _PostDetailPageState extends State<PostDetailPage> with DialogErrorMixin {
       });
     } catch (e) {}
   }
+}
+
+SingleChildScrollView _scrollViewHorizontal(users) {
+  return SingleChildScrollView(
+    scrollDirection: Axis.horizontal,
+    child: users.model.isNotEmpty
+        ? Row(
+            children: List.generate(users.model.length, (index) {
+              return Padding(
+                padding: const EdgeInsets.only(top: 15, bottom: 18, left: 16),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.only(bottom: 9),
+                      child: Stack(
+                        children: [
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Container(
+                                height: 135,
+                                width: 135,
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(8),
+                                    image: DecorationImage(
+                                        image: NetworkImage(
+                                            users.model[index].user.avatar.url),
+                                        fit: BoxFit.cover)),
+                              ),
+                              Container(
+                                padding: const EdgeInsets.only(top: 10),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Container(
+                                      height: 30,
+                                      width: 30,
+                                      decoration: BoxDecoration(
+                                          shape: BoxShape.circle,
+                                          image: DecorationImage(
+                                              image: NetworkImage(users
+                                                  .model[index]
+                                                  .user
+                                                  .avatar
+                                                  .url),
+                                              fit: BoxFit.cover)),
+                                    ),
+                                    Container(
+                                      padding: const EdgeInsets.only(left: 10),
+                                      child: Text(
+                                        ('${users.model[index].user.firstName} ${users.model[index].user.lastName}'),
+                                        style: AppStyles.h5,
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              );
+            }),
+          )
+        : Container(),
+  );
 }

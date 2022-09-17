@@ -27,6 +27,7 @@ class CommentBloc extends BlocBase {
   Future<void> writeCmt(String content) async {
     final newText = "$content + ${(_commentsBloc.currentLen + 1)}";
     final res = await _createCmtBloc.createCmt(newText);
+    print(res.toString());
     if (res) {
       _commentsBloc.getComments();
       AppEventBloc().emitEvent(const BlocEvent(EventName.createCmt));

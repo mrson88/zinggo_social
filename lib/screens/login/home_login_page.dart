@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:zinggo_social/login_facebook.dart';
 import '../../../themes/app_color.dart';
 import 'package:zinggo_social/widgets/round_btn.dart';
 import 'package:zinggo_social/screens/screens.dart';
@@ -40,7 +41,7 @@ class _Home_LoginState extends State<Home_Login> {
   }
 
   navigateToDashboard() async {
-    Navigator.pushNamed(context, LogIned.id);
+    Navigator.popAndPushNamed(context, ControlHomePage.id);
   }
 
   @override
@@ -150,6 +151,7 @@ class _Home_LoginState extends State<Home_Login> {
                           children: [
                             InkWell(
                               onTap: () {
+                                Navigator.pushNamed(context, LoginFacebook.id);
                                 print('helle');
                               },
                               child:

@@ -10,6 +10,7 @@ import 'package:zinggo_social/themes/app_styles.dart';
 import 'package:zinggo_social/widgets/action_post.dart';
 import 'package:zinggo_social/widgets/home/post_item_remake.dart';
 import 'package:zinggo_social/widgets/list_comment.dart';
+import 'package:zinggo_social/widgets/post_image_sliders_widget.dart';
 
 class PostDetail extends StatefulWidget {
   const PostDetail({Key? key, required this.post}) : super(key: key);
@@ -32,6 +33,7 @@ class _PostDetailState extends State<PostDetail> {
 
   PostDetailBloc? get bloc => BlocProvider.of<PostDetailBloc>(context);
   CommentBloc? get cmtBloc => BlocProvider.of<CommentBloc>(context);
+  // CommentBloc? get cmtBloc => CommentBloc(widget.post.id!);
   // @override
   // void initState() {
   //   super.initState();
@@ -77,16 +79,9 @@ class _PostDetailState extends State<PostDetail> {
       return cmtBloc!.writeCmt(content);
     } catch (e) {
       print('Write comment error');
+      print(e.toString());
     }
   }
-
-  // Future<void> deletePost() async {
-  //   try {
-  //     return bloc!.deletePost().then((value) {
-  //       Navigator.pop(context);
-  //     });
-  //   } catch (e) {}
-  // }
 }
 
 Widget _scrollViewVertical(state) {
@@ -155,7 +150,9 @@ Widget _scrollViewVertical(state) {
             ),
           ],
         ),
-        PostItemRemake(post: state),
+        ImageSlider(
+          pictures: state.images,
+        ),
         const SizedBox(
           height: 15,
         ),

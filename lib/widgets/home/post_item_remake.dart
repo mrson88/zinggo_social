@@ -18,21 +18,18 @@ class _PostItemRemakeState extends State<PostItemRemake> {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.only(top: 8),
-      child: GestureDetector(
-        onTap: () => print('hello'),
-        child: Card(
-          margin: const EdgeInsets.symmetric(horizontal: 8),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(8),
-          ),
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(8),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                GridImage(photos: widget.post.photos!),
-              ],
-            ),
+      child: Card(
+        margin: const EdgeInsets.symmetric(horizontal: 8),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(8),
+        ),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(8),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              GridImage(photos: widget.post.photos!),
+            ],
           ),
         ),
       ),

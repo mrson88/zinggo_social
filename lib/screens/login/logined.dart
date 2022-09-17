@@ -16,6 +16,7 @@ class LogIned extends StatefulWidget {
       builder: (_) => LogIned(),
     );
   }
+
   @override
   _LogIned createState() => _LogIned();
 }
@@ -74,7 +75,7 @@ class _LogIned extends State<LogIned> {
                   child: const Text('Sign'),
                   onPressed: () {
                     // Signing out the user
-                    Navigator.popAndPushNamed(context, ControlHomePage.id);
+                    Navigator.pushNamed(context, ControlHomePage.id);
                   },
                 ),
               ],

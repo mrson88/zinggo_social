@@ -46,7 +46,7 @@ class MyApp extends StatelessWidget {
             primarySwatch: Colors.blue,
           ),
           onGenerateRoute: AppRouter.onGenerateRoute,
-          initialRoute: PostPage.id,
+          initialRoute: Home_Login.id,
         ),
       ),
     );
