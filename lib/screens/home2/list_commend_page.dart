@@ -119,7 +119,7 @@ class _ListCommentState extends State<ListCommentPage> {
       final res = await apiProvider.get("/posts/$postId/comments");
 
       if (res.statusCode != 200) {
-        return null;
+        return;
       }
 
       List data = res.data['data'];

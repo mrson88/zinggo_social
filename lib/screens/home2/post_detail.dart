@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:http/http.dart';
 import 'package:zinggo_social/models/post.dart';
 import 'package:zinggo_social/providers/bloc_provider.dart';
 import 'package:zinggo_social/screens/home2/list_commend_page.dart';
@@ -8,9 +7,8 @@ import 'package:zinggo_social/screens/post_detail/post_detail_bloc.dart';
 import 'package:zinggo_social/themes/app_color.dart';
 import 'package:zinggo_social/themes/app_styles.dart';
 import 'package:zinggo_social/widgets/action_post.dart';
-import 'package:zinggo_social/widgets/home/post_item_remake.dart';
-import 'package:zinggo_social/widgets/list_comment.dart';
 import 'package:zinggo_social/widgets/post_image_sliders_widget.dart';
+import 'package:zinggo_social/widgets/space_widget.dart';
 
 class PostDetail extends StatefulWidget {
   const PostDetail({Key? key, required this.post}) : super(key: key);
@@ -24,7 +22,7 @@ class PostDetail extends StatefulWidget {
 class _PostDetailState extends State<PostDetail> {
   Route route() {
     return MaterialPageRoute(
-      settings: RouteSettings(name: PostDetail.id),
+      settings: const RouteSettings(name: PostDetail.id),
       builder: (_) => PostDetail(
         post: widget.post,
       ),
@@ -33,48 +31,105 @@ class _PostDetailState extends State<PostDetail> {
 
   PostDetailBloc? get bloc => BlocProvider.of<PostDetailBloc>(context);
   CommentBloc? get cmtBloc => BlocProvider.of<CommentBloc>(context);
+  String qrString = "";
+  late TextEditingController _controller;
+  String contentComment = '';
   // CommentBloc? get cmtBloc => CommentBloc(widget.post.id!);
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   bloc!.getPost();
-  //   cmtBloc!.getComments();
-  // }
+  @override
+  void initState() {
+    super.initState();
+    _controller = TextEditingController();
+    // bloc!.getPost();
+    // cmtBloc!.getComments();
+  }
 
   @override
   Widget build(BuildContext context) {
+    final Size size = MediaQuery.of(context).size;
+    final scaffoldBackgroundColor = Theme.of(context).scaffoldBackgroundColor;
     // print(post.id.toString());
     return Scaffold(
       appBar: AppBar(
-        actions: [
-          IconButton(onPressed: _writeCmt, icon: const Icon(Icons.add))
-        ],
-        title: Text("Detail Post"),
+        title: const Text("Detail Post"),
       ),
-      body: Container(
-        child: SingleChildScrollView(
-          child: Container(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                _scrollViewVertical(widget.post),
-                ActionPost(post: widget.post),
-                const Divider(thickness: 1),
-                widget.post.commentCounts! > 0
-                    ? ListCommentPage(
-                        post: widget.post,
-                      )
-                    : Container()
-              ],
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            _scrollViewVertical(widget.post),
+            ActionPost(post: widget.post),
+            const Divider(thickness: 1),
+            widget.post.commentCounts! > 0
+                ? ListCommentPage(
+                    post: widget.post,
+                  )
+                : Container(),
+            Positioned(
+              bottom: 10,
+              child: Container(
+                color: scaffoldBackgroundColor,
+                // color: AppColor.pinkAccent,
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                width: size.width,
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    SizedBox(
+                      height: 70,
+                      width: size.width - 80,
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 5),
+                        child: SizedBox(
+                          // ignore: unnecessary_null_in_if_null_operators
+                          height: 50,
+                          child: TextField(
+                            controller: _controller,
+                            onChanged: (String contentValue) {
+                              contentComment = contentValue;
+                              debugPrint(contentComment);
+                            },
+                            decoration: InputDecoration(
+                              border: const OutlineInputBorder(
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(10.0),
+                                ),
+                              ),
+                              // prefixIcon: widget.icon,
+                              labelText: 'Comment...',
+                              hintText: 'Enter Comment',
+                              hintStyle: const TextStyle(color: AppColors.grey),
+                              suffixIcon: IconButton(
+                                onPressed: _controller.clear,
+                                icon: const Icon(Icons.clear),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    const SizeBox10W(),
+                    InkWell(
+                      onTap: () {
+                        debugPrint('Tap send comment');
+                        // FocusScope.of(context).unfocus();
+                        // cmtBloc!.writeCmt(contentComment);
+                        _writeCmt(contentComment);
+                        _controller.clear();
+                      },
+                      child: const Icon(Icons.send),
+                    )
+                  ],
+                ),
+              ),
             ),
-          ),
+          ],
         ),
       ),
     );
   }
 
-  Future<void> _writeCmt() async {
-    const content = 'I love this picture ^^ ';
+  Future<void> _writeCmt(content) async {
     try {
       return cmtBloc!.writeCmt(content);
     } catch (e) {
@@ -132,7 +187,7 @@ Widget _scrollViewVertical(state) {
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                         Text(
-                          '${state.photos[0].createdAt.toString().split(' ')[0]}',
+                          state.photos[0].createdAt.toString().split(' ')[0],
                           style: AppStyles.h4,
                         ),
                         Container(

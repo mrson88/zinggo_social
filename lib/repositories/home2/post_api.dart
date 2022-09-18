@@ -11,7 +11,7 @@ class PostApi {
   static String urlString = "https://api.dofhunt.200lab.io/v1/posts";
 
   static Future<List<Post>> fetchPost() async {
-    List? _user = [];
+    List? user = [];
 
     final response = await http.get(
       Uri.parse('$urlString?cursor=$cursor'),
@@ -29,12 +29,12 @@ class PostApi {
     }
     final users = await jsonDecode(response.body);
 
-    _user = (users['data']);
+    user = (users['data']);
 
     if (users['paging'] != null) {
       paging = Paging.fromJson(users['paging']);
     }
-    final list = _user!.map((data) => Post.fromJson(data)).toList();
+    final list = user!.map((data) => Post.fromJson(data)).toList();
     return list;
   }
 

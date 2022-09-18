@@ -12,7 +12,7 @@ class LogIned extends StatefulWidget {
   static const String id = 'LogIned';
   static Route route() {
     return MaterialPageRoute(
-      settings: RouteSettings(name: id),
+      settings: const RouteSettings(name: id),
       builder: (_) => LogIned(),
     );
   }
@@ -33,7 +33,7 @@ class _LogIned extends State<LogIned> {
             if (state is UnAuthenticated) {
               // Navigate to the sign in screen when the user Signs Out
               Navigator.of(context).pushAndRemoveUntil(
-                MaterialPageRoute(builder: (context) => LoginPage()),
+                MaterialPageRoute(builder: (context) => const LoginPage()),
                 (route) => false,
               );
             }
@@ -49,7 +49,7 @@ class _LogIned extends State<LogIned> {
                       FocusScope.of(context).unfocus();
                       Navigator.popAndPushNamed(context, LoginPage.id);
                     },
-                    child: Icon(Icons.arrow_back),
+                    child: const Icon(Icons.arrow_back),
                   ),
                 ),
                 Text(

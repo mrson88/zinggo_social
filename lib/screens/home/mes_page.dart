@@ -12,8 +12,8 @@ class MesHomePage extends StatefulWidget {
   static const String id = 'Message_HomePage';
   static Route route() {
     return MaterialPageRoute(
-      settings: RouteSettings(name: id),
-      builder: (_) => MesHomePage(),
+      settings: const RouteSettings(name: id),
+      builder: (_) => const MesHomePage(),
     );
   }
 

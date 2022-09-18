@@ -4,7 +4,6 @@ import 'package:zinggo_social/models/comment.dart';
 import 'package:zinggo_social/models/post.dart';
 import 'package:zinggo_social/providers/bloc_provider.dart';
 import 'package:zinggo_social/screens/post_detail/comments_bloc.dart';
-import 'package:zinggo_social/screens/post_detail/repos/list_comments_repo.dart';
 import 'package:zinggo_social/widgets/comment_item_bubble.dart';
 import 'package:zinggo_social/widgets/upload/widgets/activity_indicator.dart';
 

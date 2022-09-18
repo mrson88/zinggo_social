@@ -1,10 +1,8 @@
 import 'dart:convert';
 import 'package:flutter/cupertino.dart';
-import 'package:zinggo_social/models/puclic.dart';
 import 'package:http/http.dart' as http;
 import 'package:zinggo_social/models/models.dart';
 
-import '../../models/paging.dart';
 
 class PostRepository {
   List _user = [];

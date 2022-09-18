@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:zinggo_social/models/post.dart';
+import 'package:zinggo_social/screens/screens.dart';
 
 import 'package:zinggo_social/widgets/home/grid_image.dart';
 
@@ -18,17 +19,27 @@ class _PostItemRemakeState extends State<PostItemRemake> {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.only(top: 8),
-      child: Card(
-        margin: const EdgeInsets.symmetric(horizontal: 8),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(8),
-        ),
-        child: ClipRRect(
-          borderRadius: BorderRadius.circular(8),
+      child: InkWell(
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (_) => PostDetail(post: widget.post),
+            ),
+          );
+        },
+        // margin: const EdgeInsets.symmetric(horizontal: 8),
+        // shape: RoundedRectangleBorder(
+        //   borderRadius: BorderRadius.circular(8),
+        // ),
+        child: Container(
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              GridImage(photos: widget.post.photos!),
+              GridImage(
+                photos: widget.post.photos!,
+                post: widget.post,
+              ),
             ],
           ),
         ),

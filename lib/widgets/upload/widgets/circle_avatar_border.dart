@@ -35,15 +35,15 @@ class CircleAvatarBorder extends StatelessWidget {
 
   Widget _buildFallback() {
     return Container(
-      child: Icon(
-        Icons.person,
-        size: size - 10,
-        color: AppColors.white,
-      ),
       alignment: Alignment.center,
       decoration: const BoxDecoration(
         shape: BoxShape.circle,
         color: AppColors.lightBlueGrey,
+      ),
+      child: Icon(
+        Icons.person,
+        size: size - 10,
+        color: AppColors.white,
       ),
     );
   }

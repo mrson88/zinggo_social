@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_login_facebook/flutter_login_facebook.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class AuthRepository {
@@ -38,8 +39,29 @@ class AuthRepository {
     }
   }
 
+  Future<void> signInWithFacebook() async {
+    try {
+      final fb = FacebookLogin();
+
+// Log in
+      final res = await fb.logIn(permissions: [
+        FacebookPermission.publicProfile,
+        FacebookPermission.email,
+      ]);
+
+      final FacebookAccessToken? accessToken = res.accessToken;
+
+      print('Access token: ${accessToken!.token}');
+      print(fb.getUserEmail().toString());
+      print('token ${'googleAuth?.accessToken'}');
+    } catch (e) {
+      throw Exception(e.toString());
+    }
+  }
+
   Future<void> signOut() async {
     try {
+      await FacebookLogin().logOut();
       await _firebaseAuth.signOut();
       final googleSignIn = GoogleSignIn();
       await googleSignIn.signOut();

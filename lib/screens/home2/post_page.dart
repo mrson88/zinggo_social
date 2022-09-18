@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:zinggo_social/blocs/home2/post2_bloc.dart';
-import 'package:zinggo_social/screens/home2/post_list.dart';
 import 'package:zinggo_social/screens/screens.dart';
 
 class PostPage extends StatefulWidget {
@@ -9,8 +8,8 @@ class PostPage extends StatefulWidget {
   static const String id = 'postpage2';
   static Route route() {
     return MaterialPageRoute(
-      settings: RouteSettings(name: id),
-      builder: (_) => PostPage(),
+      settings: const RouteSettings(name: id),
+      builder: (_) => const PostPage(),
     );
   }
 
@@ -29,7 +28,7 @@ class _PostPageState extends State<PostPage> {
       appBar: AppBar(title: const Text('Posts')),
       body: BlocProvider(
         create: (_) => Post2Bloc()..add(PostFetched()),
-        child: PostList(),
+        child: const PostList(),
       ),
     );
   }

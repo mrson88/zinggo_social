@@ -5,7 +5,6 @@ import 'package:zinggo_social/models/models.dart';
 import 'package:zinggo_social/providers/bloc_provider.dart';
 import 'package:zinggo_social/screens/post_detail/post_detail_bloc.dart';
 import 'package:zinggo_social/widgets/action_post.dart';
-import 'package:zinggo_social/widgets/home/grid_image.dart';
 import 'package:zinggo_social/widgets/list_comment.dart';
 import 'package:zinggo_social/widgets/post_image_sliders_widget.dart';
 import 'package:zinggo_social/widgets/upload/widgets/item_row.dart';
@@ -16,7 +15,7 @@ class PostDetailPage extends StatefulWidget {
   static const String id = 'PostDetailPage';
   Route route() {
     return MaterialPageRoute(
-      settings: RouteSettings(name: id),
+      settings: const RouteSettings(name: id),
       builder: (_) => PostDetailPage(
         post: post,
       ),
@@ -97,7 +96,7 @@ class _PostDetailPageState extends State<PostDetailPage> with DialogErrorMixin {
                             ),
                             ActionPost(post: post),
                             const Divider(thickness: 1),
-                            ListComment(),
+                            const ListComment(),
                           ],
                         ),
                       ),

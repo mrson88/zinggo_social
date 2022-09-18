@@ -67,7 +67,7 @@ class ItemRow extends StatelessWidget {
     }
 
     if (built != null && onTap != null) {
-      built = GestureDetector(child: built, onTap: onTap);
+      built = GestureDetector(onTap: onTap, child: built);
     }
 
     return built ?? const SizedBox.shrink();
@@ -86,7 +86,7 @@ class ItemRow extends StatelessWidget {
     }
 
     if (built != null && onTap != null) {
-      built = GestureDetector(child: built, onTap: onTap);
+      built = GestureDetector(onTap: onTap, child: built);
     }
 
     if (built != null) {

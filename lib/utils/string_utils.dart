@@ -3,7 +3,7 @@ class StringUtils {
     if (num == null) return "0";
     String result = "";
     if (num >= 1000) {
-      result = (num / 1000).toString() + "k";
+      result = "${num / 1000}k";
     } else {
       result = num.toString();
     }

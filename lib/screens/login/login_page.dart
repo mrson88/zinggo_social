@@ -3,19 +3,17 @@ import 'package:zinggo_social/screens/screens.dart';
 import '../../../themes/app_color.dart';
 import 'package:zinggo_social/widgets/round_btn.dart';
 import 'package:zinggo_social/widgets/constants.dart';
-import 'forgot_pass_page.dart';
 import 'package:zinggo_social/blocs/authentication/auth_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'logined.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
   static const String id = 'Login_Page';
   static Route route() {
     return MaterialPageRoute(
-      settings: RouteSettings(name: id),
-      builder: (_) =>  LoginPage(),
+      settings: const RouteSettings(name: id),
+      builder: (_) =>  const LoginPage(),
     );
   }
 
@@ -91,7 +89,7 @@ class _LoginPageState extends State<LoginPage> {
                                 Navigator.popAndPushNamed(
                                     context, Home_Login.id);
                               },
-                              child: Icon(Icons.arrow_back),
+                              child: const Icon(Icons.arrow_back),
                             ),
                           ),
                           Column(
@@ -149,7 +147,7 @@ class _LoginPageState extends State<LoginPage> {
                                   _authenticateWithEmailAndPassword(context);
                                 },
                                 color: Colors.white,
-                                gradient: LinearGradient(colors: [
+                                gradient: const LinearGradient(colors: [
                                   AppColors.tanHide,
                                   AppColors.redMedium
                                 ]),
@@ -164,7 +162,7 @@ class _LoginPageState extends State<LoginPage> {
                                     Navigator.pushNamed(
                                         context, Forgot_Pass_page.id);
                                   },
-                                  child: Text('Forgot your password'),
+                                  child: const Text('Forgot your password'),
                                 ),
                               ),
                             ],

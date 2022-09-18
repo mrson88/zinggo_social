@@ -15,8 +15,8 @@ class Home2 extends StatefulWidget {
   static const String id = 'Home_2';
   static Route route() {
     return MaterialPageRoute(
-      settings: RouteSettings(name: id),
-      builder: (_) => Home2(),
+      settings: const RouteSettings(name: id),
+      builder: (_) => const Home2(),
     );
   }
 
@@ -212,7 +212,7 @@ Widget _scrollViewVertical(users) {
                                     MainAxisAlignment.spaceAround,
                                 children: [
                                   Text(
-                                    '${users.model[index].photos[0].createdAt.toString().split(' ')[0]}',
+                                    users.model[index].photos[0].createdAt.toString().split(' ')[0],
                                     style: AppStyles.h4,
                                   ),
                                   Container(

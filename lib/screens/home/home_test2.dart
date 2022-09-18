@@ -1,15 +1,7 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:zinggo_social/themes/app_color.dart';
-import '../../models/post.dart';
-import '../../repositories/home/list_post_paging_repo.dart';
-import '../../repositories/home/list_posts_repo.dart';
-import '../../themes/app_styles.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:zinggo_social/blocs/blocs.dart';
 import 'package:zinggo_social/repositories/repositories.dart';
-import 'package:zinggo_social/screens/home/scroll_page_mixin.dart';
-import 'package:zinggo_social/widgets/home/post_item_remake.dart';
 
 class HomeTest2 extends StatefulWidget {
   const HomeTest2({Key? key}) : super(key: key);
@@ -17,8 +9,8 @@ class HomeTest2 extends StatefulWidget {
 
   static Route route() {
     return MaterialPageRoute(
-      settings: RouteSettings(name: id),
-      builder: (_) => HomeTest2(),
+      settings: const RouteSettings(name: id),
+      builder: (_) => const HomeTest2(),
     );
   }
 

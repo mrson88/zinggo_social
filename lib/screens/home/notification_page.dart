@@ -4,15 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'dart:convert';
 import 'package:zinggo_social/themes/app_color.dart';
-import '../../themes/app_styles.dart';
 
 class NotificationPage extends StatefulWidget {
   const NotificationPage({Key? key}) : super(key: key);
   static const String id = 'Notification';
   static Route route() {
     return MaterialPageRoute(
-      settings: RouteSettings(name: id),
-      builder: (_) => NotificationPage(),
+      settings: const RouteSettings(name: id),
+      builder: (_) => const NotificationPage(),
     );
   }
 
@@ -71,7 +70,7 @@ class _NotificationPage extends State<NotificationPage> {
     return ListView(
       children: [
         Container(
-          margin: EdgeInsets.only(top: 18, left: 14, right: 15),
+          margin: const EdgeInsets.only(top: 18, left: 14, right: 15),
           child: CupertinoSearchTextField(
             itemColor: AppColors.white,
             itemSize: 26,

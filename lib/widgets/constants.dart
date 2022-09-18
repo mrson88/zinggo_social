@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:zinggo_social/themes/app_color.dart';
-import 'package:email_validator/email_validator.dart';
 
 class nInputDecoration extends StatelessWidget {
-  nInputDecoration({
+  const nInputDecoration({
     required this.text,
     required this.obs,
     required this.controller,
@@ -44,7 +43,7 @@ class nInputDecoration extends StatelessWidget {
 }
 
 class kInputDecoration extends StatelessWidget {
-  kInputDecoration({
+  const kInputDecoration({
     required this.text,
     required this.obs,
   });
@@ -54,7 +53,7 @@ class kInputDecoration extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 30),
+      padding: const EdgeInsets.symmetric(horizontal: 30),
       child: TextFormField(
         autovalidateMode: AutovalidateMode.onUserInteraction,
         keyboardType: TextInputType.text,

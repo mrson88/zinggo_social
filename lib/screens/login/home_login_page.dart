@@ -1,17 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:zinggo_social/login_facebook.dart';
 import '../../../themes/app_color.dart';
 import 'package:zinggo_social/widgets/round_btn.dart';
 import 'package:zinggo_social/screens/screens.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import 'package:zinggo_social/blocs/authentication/auth_bloc.dart';
 
 class Home_Login extends StatefulWidget {
   static const String id = 'Home_Login_Page';
   static Route route() {
     return MaterialPageRoute(
-      settings: RouteSettings(name: id),
+      settings: const RouteSettings(name: id),
       builder: (_) => Home_Login(),
     );
   }
@@ -115,7 +113,7 @@ class _Home_LoginState extends State<Home_Login> {
                           navigateToLogin();
                         },
                         color: Colors.red,
-                        gradient: LinearGradient(
+                        gradient: const LinearGradient(
                             colors: [AppColors.white, AppColors.white]),
                       ),
                       const SizedBox(
@@ -129,7 +127,7 @@ class _Home_LoginState extends State<Home_Login> {
                           navigateToRegister();
                         },
                         color: Colors.white,
-                        gradient: LinearGradient(
+                        gradient: const LinearGradient(
                             colors: [AppColors.tanHide, AppColors.redMedium]),
                       ),
                       const SizedBox(
@@ -151,7 +149,8 @@ class _Home_LoginState extends State<Home_Login> {
                           children: [
                             InkWell(
                               onTap: () {
-                                Navigator.pushNamed(context, LoginFacebook.id);
+                                _authenticateWithFacebook(context);
+
                                 print('helle');
                               },
                               child:
@@ -195,6 +194,12 @@ class _Home_LoginState extends State<Home_Login> {
   void _authenticateWithGoogle(context) {
     BlocProvider.of<AuthBloc>(context).add(
       GoogleSignInRequested(),
+    );
+  }
+
+  void _authenticateWithFacebook(context) {
+    BlocProvider.of<AuthBloc>(context).add(
+      FacebookSigninRequested(),
     );
   }
 }

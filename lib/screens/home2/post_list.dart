@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:zinggo_social/blocs/home2/post2_bloc.dart';
 
-import 'package:zinggo_social/screens/home2/post_detail.dart';
 import 'package:zinggo_social/widgets/home2/bottom_loader.dart';
 
 import '../../widgets/post_list_item.dart';

@@ -1,18 +1,20 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:zinggo_social/models/photo.dart';
+import 'package:zinggo_social/models/models.dart';
+import 'package:zinggo_social/screens/screens.dart';
 import 'package:zinggo_social/widgets/home/post_img_item.dart';
-import 'package:zinggo_social/themes/app_styles.dart';
 import 'package:zinggo_social/utils/photo_utils.dart';
 
 class GridImage extends StatelessWidget {
   final List<Photo> photos;
   final double padding;
+  final Post post;
 
   const GridImage({
     Key? key,
     required this.photos,
     this.padding = 12,
+    required this.post,
   }) : super(key: key);
 
   @override
@@ -62,7 +64,7 @@ class GridImage extends StatelessWidget {
     }
 
     return GestureDetector(
-      onTap: () => navigateToPhotoPage([photo], 0, context),
+      onTap: () => navigateToPhotoPage(photos, 0, context),
       child: SizedBox(
         height: heightView,
         width: width,
@@ -434,5 +436,12 @@ class GridImage extends StatelessWidget {
   }
 
   void navigateToPhotoPage(
-      List<Photo> photos, int index, BuildContext context) {}
+      List<Photo> photos, int index, BuildContext context) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (_) => PostDetail(post: post),
+      ),
+    );
+  }
 }

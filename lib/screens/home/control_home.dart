@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:zinggo_social/screens/home/home_2.dart';
 import 'package:zinggo_social/screens/home/mes_page.dart';
 import 'package:zinggo_social/screens/home/notification_page.dart';
+import 'package:zinggo_social/screens/home/profile_page.dart';
 import 'package:zinggo_social/screens/home2/post_page.dart';
 import 'package:zinggo_social/widgets/navigationbar_item.dart';
 import 'package:zinggo_social/themes/app_color.dart';
@@ -11,8 +11,8 @@ class ControlHomePage extends StatefulWidget {
   static const String id = 'Control_HomePage';
   static Route route() {
     return MaterialPageRoute(
-      settings: RouteSettings(name: id),
-      builder: (_) => ControlHomePage(),
+      settings: const RouteSettings(name: id),
+      builder: (_) => const ControlHomePage(),
     );
   }
 
@@ -32,10 +32,7 @@ class _MyStatefulWidgetState extends State<ControlHomePage> {
     ),
     MesHomePage(),
     NotificationPage(),
-    Text(
-      'Index 2: School',
-      style: optionStyle,
-    ),
+    Profile_Page(),
   ];
 
   void _onItemTapped(int index) {

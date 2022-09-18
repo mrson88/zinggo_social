@@ -9,8 +9,8 @@ class Forgot_Pass_page extends StatefulWidget {
   static const String id = 'forgot_pass_screen';
   static Route route() {
     return MaterialPageRoute(
-      settings: RouteSettings(name: id),
-      builder: (_) => Forgot_Pass_page(),
+      settings: const RouteSettings(name: id),
+      builder: (_) => const Forgot_Pass_page(),
     );
   }
 
@@ -41,7 +41,7 @@ class _forgot_pass_page extends State<Forgot_Pass_page> {
                       FocusScope.of(context).unfocus();
                       Navigator.popAndPushNamed(context, LoginPage.id);
                     },
-                    child: Icon(Icons.close),
+                    child: const Icon(Icons.close),
                   ),
                 ),
                 Column(
@@ -71,7 +71,7 @@ class _forgot_pass_page extends State<Forgot_Pass_page> {
                     const SizedBox(
                       height: 58,
                     ),
-                    kInputDecoration(
+                    const kInputDecoration(
                       text: 'Your email',
                       obs: false,
                     ),
@@ -84,7 +84,7 @@ class _forgot_pass_page extends State<Forgot_Pass_page> {
                       size: 20,
                       onPressed: () {},
                       color: Colors.white,
-                      gradient: LinearGradient(
+                      gradient: const LinearGradient(
                           colors: [AppColors.tanHide, AppColors.redMedium]),
                     ),
                     const SizedBox(

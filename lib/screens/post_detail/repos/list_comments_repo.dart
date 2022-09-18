@@ -1,7 +1,6 @@
 // model & url,
 // class T
 import 'package:zinggo_social/models/comment.dart';
-import 'package:zinggo_social/models/models.dart';
 import 'package:zinggo_social/providers/api_provider.dart';
 
 class ListCommentsRepo {

@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:zinggo_social/screens/home/create_post_page.dart';
-import '/models/models.dart';
 import '/screens/screens.dart';
 
 class AppRouter {

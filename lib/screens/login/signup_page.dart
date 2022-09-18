@@ -15,8 +15,8 @@ class SignUpPage extends StatefulWidget {
   static const String id = 'signup_screen';
   static Route route() {
     return MaterialPageRoute(
-      settings: RouteSettings(name: id),
-      builder: (_) => SignUpPage(),
+      settings: const RouteSettings(name: id),
+      builder: (_) => const SignUpPage(),
     );
   }
 
@@ -88,7 +88,7 @@ class _SignUpPage extends State<SignUpPage> {
                                 Navigator.popAndPushNamed(
                                     context, Home_Login.id);
                               },
-                              child: Icon(Icons.arrow_back),
+                              child: const Icon(Icons.arrow_back),
                             ),
                           ),
                           Column(

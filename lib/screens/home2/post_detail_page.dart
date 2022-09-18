@@ -9,7 +9,6 @@ import 'package:zinggo_social/screens/post_detail/post_detail_bloc.dart';
 import 'package:zinggo_social/themes/app_styles.dart';
 import 'package:zinggo_social/widgets/action_post.dart';
 import 'package:zinggo_social/widgets/home/grid_image.dart';
-import 'package:zinggo_social/widgets/list_comment.dart';
 import 'package:zinggo_social/widgets/upload/widgets/item_row.dart';
 
 class PostDetailPage extends StatefulWidget {
@@ -83,7 +82,11 @@ class _PostDetailPageState extends State<PostDetailPage> with DialogErrorMixin {
                                 ),
                               ),
                             ),
-                            GridImage(photos: post.photos!, padding: 0),
+                            GridImage(
+                              photos: post.photos!,
+                              padding: 0,
+                              post: post,
+                            ),
                             // _scrollViewHorizontal(post),
                             ActionPost(post: post),
                             const Divider(thickness: 1),

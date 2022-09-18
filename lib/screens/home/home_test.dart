@@ -1,8 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:zinggo_social/themes/app_color.dart';
-import '../../repositories/home/list_post_paging_repo.dart';
-import '../../repositories/home/list_posts_repo.dart';
 import '../../themes/app_styles.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:zinggo_social/blocs/blocs.dart';
@@ -15,8 +13,8 @@ class HomeTest extends StatefulWidget {
   static const String id = 'Home_Test';
   static Route route() {
     return MaterialPageRoute(
-      settings: RouteSettings(name: id),
-      builder: (_) => HomeTest(),
+      settings: const RouteSettings(name: id),
+      builder: (_) => const HomeTest(),
     );
   }
 
@@ -232,7 +230,7 @@ Widget _scrollViewVertical(users) {
                                     MainAxisAlignment.spaceAround,
                                 children: [
                                   Text(
-                                    '${users.model[index].photos[0].createdAt.toString().split(' ')[0]}',
+                                    users.model[index].photos[0].createdAt.toString().split(' ')[0],
                                     style: AppStyles.h4,
                                   ),
                                   Container(

@@ -91,7 +91,7 @@ Widget scrollViewVetical(List chatUser, context) {
                             ],
                           ),
                           Container(
-                            padding: EdgeInsets.only(left: 15),
+                            padding: const EdgeInsets.only(left: 15),
                             child: Wrap(
                                 spacing: 5.0,
                                 runSpacing: 5.0,

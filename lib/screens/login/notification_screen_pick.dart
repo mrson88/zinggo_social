@@ -6,7 +6,7 @@ class NotificationPage extends StatefulWidget {
   static Route route() {
     return MaterialPageRoute(
       settings: RouteSettings(name: id),
-      builder: (_) => NotificationPage(),
+      builder: (_) => const NotificationPage(),
     );
   }
 
@@ -20,12 +20,12 @@ class _NotificationPageState extends State<NotificationPage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Color(0xff242a37),
+        backgroundColor: const Color(0xff242a37),
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               Center(
@@ -39,31 +39,31 @@ class _NotificationPageState extends State<NotificationPage> {
                 ),
               ),
               Container(
-                child: Text(
+                child: const Text(
                   'Turn on \nNotification',
                   style: TextStyle(fontSize: 34, color: Colors.white),
                 ),
               ),
               Container(
-                child: Text(
+                child: const Text(
                   'Enable push notifications to let send you \npersonal news and updates',
                   style: TextStyle(fontSize: 17, color: Colors.white),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 41,
               ),
               Container(
-                padding: EdgeInsets.symmetric(horizontal: 20),
+                padding: const EdgeInsets.symmetric(horizontal: 20),
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(5),
                     color: Colors.white),
                 height: 67,
-                margin: EdgeInsets.symmetric(horizontal: 25),
+                margin: const EdgeInsets.symmetric(horizontal: 25),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text('Turn on notifications'),
+                    const Text('Turn on notifications'),
                     Switch(
                       value: notification,
                       onChanged: (notification) {

@@ -11,8 +11,8 @@ class CreatePostPage extends StatefulWidget {
   static const String id = 'creat';
   static Route route() {
     return MaterialPageRoute(
-      settings: RouteSettings(name: id),
-      builder: (_) => CreatePostPage(),
+      settings: const RouteSettings(name: id),
+      builder: (_) => const CreatePostPage(),
     );
   }
 

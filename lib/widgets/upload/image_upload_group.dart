@@ -1,6 +1,5 @@
 import 'dart:math';
 import 'package:dio/dio.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:zinggo_social/models/models.dart';
 import 'package:multi_image_picker2/multi_image_picker2.dart';
@@ -20,7 +19,7 @@ class ImageUploadGroup extends StatefulWidget {
 
   const ImageUploadGroup({
     Key? key,
-    this.maxImage = 5,
+    this.maxImage = 9,
     required this.listImages,
     required this.onValueChanged,
     this.folder = "post",

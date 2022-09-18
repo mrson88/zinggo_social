@@ -1,4 +1,3 @@
-import 'dart:async';
 import 'package:zinggo_social/repositories/auth/auth_repository.dart';
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
@@ -48,7 +47,18 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     on<SignOutRequested>((event, emit) async {
       emit(Loading());
       await authRepository.signOut();
+
       emit(UnAuthenticated());
+    });
+    on<FacebookSigninRequested>((event, emit) async {
+      emit(Loading());
+      try {
+        await authRepository.signInWithFacebook();
+        emit(Authenticated());
+      } catch (e) {
+        emit(AuthError(e.toString()));
+        emit(UnAuthenticated());
+      }
     });
   }
 }

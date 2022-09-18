@@ -102,12 +102,8 @@ class _UploadItemState extends State<UploadItem> {
             child: ButtonTheme(
               minWidth: 20,
               // ignore: deprecated_member_use
-              child: FlatButton(
-                padding: const EdgeInsets.all(0),
+              child: ElevatedButton(
                 onPressed: widget.onDelete,
-                color: Colors.white,
-                shape: const CircleBorder(
-                    side: BorderSide(color: Colors.transparent)),
                 child: Icon(
                   Icons.close,
                   // ignore: deprecated_member_use

@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:zinggo_social/themes/app_color.dart';
 
 class RoundButton extends StatelessWidget {
-  RoundButton(
+  const RoundButton(
       {required this.color,
       required this.onPressed,
       required this.gradient,
@@ -19,7 +18,7 @@ class RoundButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: height,
-      margin: EdgeInsets.symmetric(horizontal: 30),
+      margin: const EdgeInsets.symmetric(horizontal: 30),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(22),
         gradient: gradient,

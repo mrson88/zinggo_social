@@ -14,7 +14,7 @@ class Home2 extends StatefulWidget {
   static Route route() {
     return MaterialPageRoute(
       settings: RouteSettings(name: id),
-      builder: (_) => Home2(),
+      builder: (_) => const Home2(),
     );
   }
 
@@ -67,7 +67,7 @@ class _Home2 extends State<Home2> {
     return ListView(
       children: [
         Container(
-          margin: EdgeInsets.only(top: 18, left: 14, right: 15),
+          margin: const EdgeInsets.only(top: 18, left: 14, right: 15),
           child: CupertinoSearchTextField(
             itemColor: AppColors.white,
             itemSize: 26,
@@ -133,7 +133,7 @@ SingleChildScrollView _scrollViewHorizontal(List user) {
                                         fit: BoxFit.cover)),
                               ),
                               Container(
-                                padding: EdgeInsets.only(top: 10),
+                                padding: const EdgeInsets.only(top: 10),
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
@@ -148,7 +148,7 @@ SingleChildScrollView _scrollViewHorizontal(List user) {
                                               fit: BoxFit.cover)),
                                     ),
                                     Container(
-                                      padding: EdgeInsets.only(left: 10),
+                                      padding: const EdgeInsets.only(left: 10),
                                       child: Text(
                                         user[index]['name'].toString(),
                                         style: AppStyles.h5,
@@ -213,11 +213,11 @@ Widget _scrollViewVetical(List chatUser, context) {
                       color: Colors.grey.withOpacity(0.5),
                       spreadRadius: 5,
                       blurRadius: 7,
-                      offset: Offset(0, 3), // changes position of shadow
+                      offset: const Offset(0, 3), // changes position of shadow
                     ),
                   ],
                   color: AppColors.darkGray,
-                  borderRadius: BorderRadius.all(Radius.circular(8))),
+                  borderRadius: const BorderRadius.all(Radius.circular(8))),
               padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -236,7 +236,7 @@ Widget _scrollViewVetical(List chatUser, context) {
                                 fit: BoxFit.cover)),
                       ),
                       Container(
-                        padding: EdgeInsets.symmetric(horizontal: 10),
+                        padding: const EdgeInsets.symmetric(horizontal: 10),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -287,11 +287,11 @@ Widget _scrollViewVetical(List chatUser, context) {
                       ],
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   Container(
-                    padding: EdgeInsets.only(left: 15),
+                    padding: const EdgeInsets.only(left: 15),
                     child: Wrap(
                         spacing: 5.0,
                         runSpacing: 5.0,
