@@ -9,7 +9,7 @@ class Home_Login extends StatefulWidget {
   static const String id = 'Home_Login_Page';
   static Route route() {
     return MaterialPageRoute(
-      settings: const RouteSettings(name: id),
+      settings: RouteSettings(name: id),
       builder: (_) => Home_Login(),
     );
   }
@@ -113,7 +113,7 @@ class _Home_LoginState extends State<Home_Login> {
                           navigateToLogin();
                         },
                         color: Colors.red,
-                        gradient: const LinearGradient(
+                        gradient: LinearGradient(
                             colors: [AppColors.white, AppColors.white]),
                       ),
                       const SizedBox(
@@ -127,7 +127,7 @@ class _Home_LoginState extends State<Home_Login> {
                           navigateToRegister();
                         },
                         color: Colors.white,
-                        gradient: const LinearGradient(
+                        gradient: LinearGradient(
                             colors: [AppColors.tanHide, AppColors.redMedium]),
                       ),
                       const SizedBox(

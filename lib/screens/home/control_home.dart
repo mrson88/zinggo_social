@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:zinggo_social/screens/home/google_map_page.dart';
 import 'package:zinggo_social/screens/home/mes_page.dart';
 import 'package:zinggo_social/screens/home/notification_page.dart';
 import 'package:zinggo_social/screens/home/profile_page.dart';
@@ -26,10 +27,7 @@ class _MyStatefulWidgetState extends State<ControlHomePage> {
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static const List<Widget> _widgetOptions = <Widget>[
     PostPage(),
-    Text(
-      'Index 0: Home',
-      style: optionStyle,
-    ),
+    GoogleMapSample(),
     MesHomePage(),
     NotificationPage(),
     Profile_Page(),
