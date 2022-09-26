@@ -2,8 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:zinggo_social/blocs/like_bloc.dart';
 import 'package:zinggo_social/models/models.dart';
-import 'package:zinggo_social/repositories/post/like_repo.dart';
-import 'package:zinggo_social/screens/post_detail/blocs/app_event_bloc.dart';
+import 'package:zinggo_social/modules/home/repo/like_repo.dart';
+import 'package:zinggo_social/modules/post_detail/blocs/app_event_bloc.dart';
+
 import 'package:zinggo_social/utils/model_type.dart';
 import 'package:zinggo_social/widgets/icon_post_comment.dart';
 import 'package:zinggo_social/widgets/text_count_number.dart';

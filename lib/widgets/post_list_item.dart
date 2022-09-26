@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:zinggo_social/models/post.dart';
+import 'package:zinggo_social/modules/home/screens/post_item_remake.dart';
 import 'package:zinggo_social/screens/home2/post_detail.dart';
 
 import 'package:zinggo_social/widgets/action_post.dart';
-import 'package:zinggo_social/widgets/home/post_item_remake.dart';
+
 
 class PostListItem extends StatelessWidget {
   const PostListItem({super.key, required this.post});

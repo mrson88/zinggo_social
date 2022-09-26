@@ -2,13 +2,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:zinggo_social/dialog_err_mixin.dart';
 import 'package:zinggo_social/models/models.dart';
+import 'package:zinggo_social/modules/post_detail/comments_bloc.dart';
+import 'package:zinggo_social/modules/post_detail/post_detail_bloc.dart';
 import 'package:zinggo_social/providers/bloc_provider.dart';
 import 'package:zinggo_social/screens/home2/list_commend_page.dart';
-import 'package:zinggo_social/screens/post_detail/comments_bloc.dart';
-import 'package:zinggo_social/screens/post_detail/post_detail_bloc.dart';
+
 import 'package:zinggo_social/themes/app_styles.dart';
 import 'package:zinggo_social/widgets/action_post.dart';
-import 'package:zinggo_social/widgets/home/grid_image.dart';
+import 'package:zinggo_social/modules/home/screens/grid_image.dart';
 import 'package:zinggo_social/widgets/upload/widgets/item_row.dart';
 
 class PostDetailPage extends StatefulWidget {

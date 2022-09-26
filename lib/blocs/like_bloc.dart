@@ -1,5 +1,5 @@
 import 'package:zinggo_social/providers/bloc_provider.dart';
-import 'package:zinggo_social/repositories/post/like_repo.dart';
+import 'package:zinggo_social/modules/home/repo/like_repo.dart';
 
 class LikeBloc extends BlocBase {
   final CanLikeRepo likeRepo;

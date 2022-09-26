@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:zinggo_social/blocs/home2/post2_bloc.dart';
-import 'package:zinggo_social/screens/screens.dart';
+import 'package:zinggo_social/modules/home/screens/create_post_page.dart';
+import 'package:zinggo_social/screens/home2/post_list.dart';
+
 
 class PostPage extends StatefulWidget {
   const PostPage({Key? key}) : super(key: key);
@@ -23,7 +25,10 @@ class _PostPageState extends State<PostPage> {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.add),
-        onPressed: () => Navigator.pushNamed(context, CreatePostPage.id),
+        onPressed: () => Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => const CreatePostPage()),
+        ),
       ),
       appBar: AppBar(title: const Text('Posts')),
       body: BlocProvider(

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:zinggo_social/models/picture.dart';
 import 'package:zinggo_social/themes/app_color.dart';
 import 'package:zinggo_social/widgets/space_widget.dart';
+import 'package:photo_view/photo_view.dart';
 
 class ImageSlider extends StatefulWidget {
   final List<Picture>? pictures;
@@ -34,7 +35,7 @@ class _ImageSliderState extends State<ImageSlider> {
           children: [
             Expanded(
               child: CarouselSlider(
-                items: imageSliders(widget.pictures!),
+                items: imageSliders(context, widget.pictures!),
                 carouselController: _controller,
                 options: CarouselOptions(
                   enableInfiniteScroll: false,
@@ -68,26 +69,35 @@ class _ImageSliderState extends State<ImageSlider> {
   }
 }
 
-List<Widget> imageSliders(List<Picture> pictures) {
+List<Widget> imageSliders(context, List<Picture> pictures) {
   late List<Widget> imageSlidesList = pictures
       .map(
-        (item) => Container(
-          margin: const EdgeInsets.all(5.0),
-          child: ClipRRect(
-            borderRadius: const BorderRadius.all(
-              Radius.circular(5),
+        (item) => InkWell(
+          child: Container(
+            margin: const EdgeInsets.all(5.0),
+            child: ClipRRect(
+              borderRadius: const BorderRadius.all(
+                Radius.circular(5),
+              ),
+              // child:
+              child: Image.network(
+                item.url!,
+                fit: BoxFit.cover,
+                width: 1000.0,
+                height: 1000.0,
+              ),
             ),
-            // child:
-            child: Image.network(
-              item.url!,
-              fit: BoxFit.cover,
-              width: 1000.0,
-              height: 1000.0,
+            // child: GestureDetector(
+            //   child: Image.network(item.url!, fit: BoxFit.cover),
+            // ),
+          ),
+          onTap: () => Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (_) => ShowImage(
+                imageUrl: item.url!,
+              ),
             ),
           ),
-          // child: GestureDetector(
-          //   child: Image.network(item.url!, fit: BoxFit.cover),
-          // ),
         ),
       )
       .toList();
@@ -113,4 +123,30 @@ List<Widget> indicators(imagesLength, currentIndex, BuildContext context) {
           shape: BoxShape.circle),
     );
   });
+}
+
+class ShowImage extends StatelessWidget {
+  final String imageUrl;
+
+  const ShowImage({required this.imageUrl, Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final Size size = MediaQuery.of(context).size;
+
+    return Scaffold(
+      appBar: AppBar(
+        actions: [],
+      ),
+      body: Container(
+          height: size.height,
+          width: size.width,
+          color: Colors.black,
+          child: PhotoView(
+            imageProvider: NetworkImage(imageUrl),
+            maxScale: 2.0,
+            minScale: 0.2,
+          )),
+    );
+  }
 }
