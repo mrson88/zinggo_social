@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:zinggo_social/blocs/home2/post2_bloc.dart';
 import 'package:zinggo_social/modules/home/wiggets/bottom_loader.dart';
 
-import '../../widgets/post_list_item.dart';
+import '../../../widgets/post_list_item.dart';
 
 class PostList extends StatefulWidget {
   const PostList({super.key});

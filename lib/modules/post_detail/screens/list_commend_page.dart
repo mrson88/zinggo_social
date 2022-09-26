@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 import 'package:zinggo_social/models/comment.dart';
 import 'package:zinggo_social/models/post.dart';
-import 'package:zinggo_social/modules/post_detail/comments_bloc.dart';
+
 import 'package:zinggo_social/providers/api_provider.dart';
 import 'package:zinggo_social/providers/bloc_provider.dart';
 
@@ -40,7 +40,7 @@ class _ListCommentState extends State<ListCommentPage> {
     super.dispose();
   }
 
-  CommentBloc? get commentBloc => BlocProvider.of<CommentBloc>(context);
+  // CommentBloc? get commentBloc => BlocProvider.of<CommentBloc>(context);
   // List<Comment> get commentBloc =>
   //     ListCommentsRepo(post.id!).getComments() as List<Comment>;
 
@@ -90,7 +90,7 @@ class _ListCommentState extends State<ListCommentPage> {
                         cmt: comment,
                         onReact: (type, isReact) {
                           if (isReact) {
-                            commentBloc?.react(comment.id!, type);
+                            // commentBloc?.react(comment.id!, type);
                           }
                         },
                       ),

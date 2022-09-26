@@ -3,7 +3,7 @@ import 'package:zinggo_social/models/post.dart';
 import 'package:zinggo_social/modules/post_detail/comments_bloc.dart';
 import 'package:zinggo_social/modules/post_detail/post_detail_bloc.dart';
 import 'package:zinggo_social/providers/bloc_provider.dart';
-import 'package:zinggo_social/screens/home2/list_commend_page.dart';
+import 'package:zinggo_social/modules/post_detail/screens/list_commend_page.dart';
 
 import 'package:zinggo_social/themes/app_color.dart';
 import 'package:zinggo_social/themes/app_styles.dart';
@@ -115,7 +115,7 @@ class _PostDetailState extends State<PostDetail> {
                         debugPrint('Tap send comment');
                         // FocusScope.of(context).unfocus();
                         // cmtBloc!.writeCmt(contentComment);
-                        _writeCmt(contentComment);
+                        _writeCmt(_controller);
                         _controller.clear();
                       },
                       child: const Icon(Icons.send),
