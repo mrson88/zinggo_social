@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:zinggo_social/models/post.dart';
 
 import 'package:zinggo_social/modules/home/screens/grid_image.dart';
-import 'package:zinggo_social/screens/home2/post_detail.dart';
+import 'package:zinggo_social/modules/post_detail/screens/post_detail.dart';
 
 class PostItemRemake extends StatefulWidget {
   final Post post;

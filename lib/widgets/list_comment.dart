@@ -28,7 +28,7 @@ class _ListCommentState extends State<ListComment> {
     print('commentBloc=$commentBloc');
 
     print('commentid=${post.id}');
-    return StreamBuilder<List<Comment>>(
+    return StreamBuilder<List<Comment>?>(
       stream: commentBloc!.listCmtStream,
       builder: (context, snapshot) {
         if (snapshot.data == null) {

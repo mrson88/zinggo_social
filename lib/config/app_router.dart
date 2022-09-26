@@ -7,8 +7,7 @@ import 'package:zinggo_social/modules/auth/screens/notification_screen_pick.dart
 import 'package:zinggo_social/modules/auth/screens/signup_page.dart';
 import 'package:zinggo_social/modules/chat_screen/screens/mes_page.dart';
 import 'package:zinggo_social/modules/home/screens/create_post_page.dart';
-import 'package:zinggo_social/screens/home2/post_page.dart';
-
+import 'package:zinggo_social/modules/post_detail/screens/post_page.dart';
 
 class AppRouter {
   static Route onGenerateRoute(RouteSettings settings) {
@@ -27,8 +26,6 @@ class AppRouter {
 
       case MesHomePage.id:
         return MesHomePage.route();
-
-
 
       case PostPage.id:
         return PostPage.route();

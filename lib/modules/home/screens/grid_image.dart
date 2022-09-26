@@ -2,7 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:zinggo_social/models/models.dart';
 import 'package:zinggo_social/modules/home/screens/post_img_item.dart';
-import 'package:zinggo_social/screens/home2/post_detail.dart';
+import 'package:zinggo_social/modules/post_detail/screens/post_detail.dart';
 
 import 'package:zinggo_social/utils/photo_utils.dart';
 
